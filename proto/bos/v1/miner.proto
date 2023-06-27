@@ -111,6 +111,8 @@ message GetMinerDetailsResponse {
   string mac_address = 7;
   // System uptime
   uint64 system_uptime = 8;
+  // Miner hashrate declared by manufacturer
+  braiins.bos.v1.GigaHashrate sticker_hashrate = 9;
 }
 
 message GetMinerStatsRequest {}
@@ -140,6 +142,25 @@ message Hashboard {
   braiins.bos.v1.WorkSolverStats stats = 7;
 }
 
+// Enumeration for support archive format
+enum SupportArchiveFormat {
+  SUPPORT_ARCHIVE_FORMAT_UNSPECIFIED = 0;
+  // Compressed zip format
+  SUPPORT_ARCHIVE_FORMAT_ZIP = 1;
+  // BOS custom format
+  SUPPORT_ARCHIVE_FORMAT_BOS = 2;
+}
+
+message GetSupportArchiveRequest {
+  // Support archive format.
+  SupportArchiveFormat format = 1;
+}
+
+message GetSupportArchiveResponse {
+  // Support archive data
+  bytes chunk_data = 1;
+}
+
 message GetHashboardsRequest {}
 
 message GetHashboardsResponse {
@@ -154,4 +175,7 @@ service MinerService {
   rpc GetMinerStats(GetMinerStatsRequest) returns (GetMinerStatsResponse);
   // Method to get miner hashboards state and statistics.
   rpc GetHashboards(GetHashboardsRequest) returns (GetHashboardsResponse);
+  // Method to download BOS support archive
+  // Method returns stream of messages with binary chunks that needs to be concatenated on the caller side
+  rpc GetSupportArchive(GetSupportArchiveRequest) returns (stream GetSupportArchiveResponse);
 }

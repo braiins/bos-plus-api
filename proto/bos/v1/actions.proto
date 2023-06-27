@@ -75,6 +75,19 @@ message ResumeMiningResponse {
   bool already_mining = 1;
 }
 
+// Request message to enable/disable locate device
+message SetLocateDeviceStatusRequest {
+  bool enable = 1;
+}
+
+// Response with locate device status
+message LocateDeviceStatusResponse {
+  bool enabled = 1;
+}
+
+// Request for locate device status action.
+message GetLocateDeviceStatusRequest {}
+
 service ActionsService {
   // Method to start bosminer
   rpc Start(StartRequest) returns (StartResponse);
@@ -93,4 +106,10 @@ service ActionsService {
 
   // Method to reboot whole miner
   rpc Reboot(RebootRequest) returns (RebootResponse);
+
+  // Method to enable/disable locate device mode
+  rpc SetLocateDeviceStatus(SetLocateDeviceStatusRequest) returns (LocateDeviceStatusResponse);
+
+  // Method to retrieve the locate device mode status
+  rpc GetLocateDeviceStatus(GetLocateDeviceStatusRequest) returns (LocateDeviceStatusResponse);
 }

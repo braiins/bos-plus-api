@@ -5,9 +5,10 @@ This repository contains protocol buffers for the new Braiins OS+ Public API, wh
 
 ### Versions
 
-| Public API Version  | BOS+ version|
-|---------------------|-------------|
-| 1.0.0-alpha(latest) |23.03| 
+| Public API Version     | BOS+ version |
+|------------------------|--------------|
+| 1.0.0-alpha.1 (latest) | 23.03.3      |
+| 1.0.0-alpha            | 23.03        |
 
 ### Overview
 
@@ -186,7 +187,9 @@ Contains miner actions related protobuf messages and **ActionsService** with var
 * **Reboot** - method to reboot whole miner.
 
 #### 2. proto/bos/v1/authentication.proto
-Contains **AuthenticationService** with **login** method to log in and get auth. token.
+Contains authentication related messages and **AuthenticationService** with various methods:
+* **Login** - method to log in and get auth. token,
+* **SetPassword** - method to set new password.
 
 #### 3. proto/bos/v1/common.proto
 Contains **SaveAction** enumeration used for setting configuration. Options:
