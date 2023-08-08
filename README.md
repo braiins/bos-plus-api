@@ -5,9 +5,10 @@ This repository contains protocol buffers for the new Braiins OS+ Public API, wh
 
 ### Versions
 
-| Public API Version  | BOS+ version|
-|---------------------|-------------|
-| 1.0.0-alpha(latest) |23.03| 
+| Public API Version  | BOS+ version |
+|---------------------|--------------|
+| 1.0.0-beta (latest) | 23.04        |
+| 1.0.0-alpha         | 23.03        |
 
 ### Overview
 
@@ -71,6 +72,7 @@ braiins.bos.v1.ActionsService
 braiins.bos.v1.AuthenticationService
 braiins.bos.v1.ConfigurationService
 braiins.bos.v1.CoolingService
+braiins.bos.v1.LicenseService
 braiins.bos.v1.MinerService
 braiins.bos.v1.PoolService
 braiins.bos.v1.TunerService
@@ -172,7 +174,7 @@ $ grpcurl -plaintext miner:50051 braiins.bos.ApiVersionService/GetApiVersion
   "pre": "alpha"
 }
 ```
-Note: this is actually `1.0.0-alpha`. `0` as default value was dropped during serialization.
+**Note**: Version `1.0.0-<ver>` is actually `1.0.0-<ver>.0`. `0` as default value was dropped during serialization.
 
 
 ### Proto files
@@ -207,18 +209,22 @@ Contains cooling related messages and **CoolingService** with various methods to
 * **GetCoolingState** - method to read current temperature measurements and fans states,
 * **SetImmersionMode** - method to set/toggle immersion mode.
 
-#### 7. proto/bos/v1/miner.proto
+#### 7. proto/bos/v1/license.proto
+Contains license related messages and **LicenseService** with method to read license state:
+* **GetLicenseState** - method to read current license state.
+
+#### 8. proto/bos/v1/miner.proto
 Contains miner related messages and **MinerService** with various methods to read info about miner:
 * **GetMinerDetails** - method to read miner details info like model, IP, uptime, etc.,
 * **GetMinerStats** - method to read aggregated miner stats,
 * **GetHashboards** - method to read miner hashboards state and statistics.
 
-#### 8. proto/bos/v1/pool.proto
+#### 9. proto/bos/v1/pool.proto
 Contains pools related messages and **PoolService** with various methods to read or modify pool settings:
 * **GetPoolGroups** - method to read current pools state and statistics,
 * **UpdatePoolGroup** - method to update default pool group.
 
-#### 9. proto/bos/v1/tuner.proto
+#### 10. proto/bos/v1/tuner.proto
 Contains tuner related messages and **TunerService** with various methods to read or modify tuner:
 * **GetTunerState** - method to read current tuner state and available tuner profiles,
 * **SetDefaultPowerTarget** - method to set default power target,
@@ -226,13 +232,13 @@ Contains tuner related messages and **TunerService** with various methods to rea
 * **IncrementPowerTarget** - method to increment currently configured power target by a specific value,
 * **DecrementPowerTarget** - method to decrement current configured power target by a specific value.
 
-#### 10. proto/bos/v1/units.proto
+#### 11. proto/bos/v1/units.proto
 Contains protobuf messages representing various units like Voltage, Frequency, etc.
 
-#### 11. proto/bos/v1/work.proto
+#### 12. proto/bos/v1/work.proto
 Contains mining work related protobuf messages.
 
-#### 12. proto/bos/version.proto
+#### 13. proto/bos/version.proto
 Contains **ApiVersionService** service with **GetApiVersion** to be able to read current Public API version available for communication with miner
 
 

@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.0-beta] - 2023-05-11
+The latest release, version 1.0.0-beta, introduces a significant addition: the all-new BOS+ License feature.
+
+### Added
+* Introduction of a new `braiins.bos.v1.LicenseService::GetLicenseState()` streaming method to fetch BOS Licence state.
+
+**Important:** This version remained in a private state for a duration, attributed to the testing phase of the novel licenses approach.
+
+---
+
 ## [1.0.0-alpha] - 2023-05-25
 The first release for the new Braiins OS+ Public API, which introduces the first batch of features.
 

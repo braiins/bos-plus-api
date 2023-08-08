@@ -51,3 +51,10 @@ message Power {
 message Temperature {
   double degree_c = 1;
 }
+
+// Structure representing Basis Points
+message BasesPoints {
+  // A basis point is one hundredth of 1 percentage point.
+  // For example: 1bps = 0.01%, 250bps = 2.5%
+  uint32 bsp = 1;
+}
