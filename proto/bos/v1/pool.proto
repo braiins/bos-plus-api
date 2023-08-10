@@ -123,22 +123,56 @@ message GetPoolGroupsResponse {
   repeated braiins.bos.v1.PoolGroup pool_groups = 1;
 }
 
+// Request for pool group create action
+// group.uid must not be specified (it will be generated)
+// group.pools[].uid must not be specified (it will be generated)
+message CreatePoolGroupRequest {
+  // Save action
+  braiins.bos.v1.SaveAction save_action = 1;
+  // Group configuration
+  PoolGroupConfiguration group = 2;
+}
+
+// Response for pool group create action
+message CreatePoolGroupResponse {
+  // Group configuration
+  PoolGroupConfiguration group = 1;
+}
+
 // Request for pool group update action
 // group.uid must be specified and represents unique id of group which will be updated
-// group.pools[].uid must not be specified
+// group.pools[].uid must not be specified (it will be generated)
 message UpdatePoolGroupRequest {
-  // New group settings
-  PoolGroupConfiguration group = 1;
   // Save action
-  braiins.bos.v1.SaveAction save_action = 2;
+  braiins.bos.v1.SaveAction save_action = 1;
+  // New group configuration
+  PoolGroupConfiguration group = 2;
 }
 
 // Response for pool group update action
-message UpdatePoolGroupResponse {}
+message UpdatePoolGroupResponse {
+  // Group configuration
+  PoolGroupConfiguration group = 1;
+}
+
+// Request for pool group remove action
+message RemovePoolGroupRequest {
+  // Save action
+  braiins.bos.v1.SaveAction save_action = 1;
+  // Group id
+  string uid = 2;
+}
+
+// Response for pool group remove action
+message RemovePoolGroupResponse {}
 
 service PoolService {
-  // Read method to get current pool groups' data
+  // Read method to get current pool groups data
   rpc GetPoolGroups(GetPoolGroupsRequest) returns (GetPoolGroupsResponse);
-  // Method update pool group
+  // Method to create pool group
+  rpc CreatePoolGroup(CreatePoolGroupRequest) returns (CreatePoolGroupResponse);
+  // Method to update pool group
   rpc UpdatePoolGroup(UpdatePoolGroupRequest) returns (UpdatePoolGroupResponse);
+  // Method to remove pool group
+  rpc RemovePoolGroup(RemovePoolGroupRequest) returns (RemovePoolGroupResponse);
 }

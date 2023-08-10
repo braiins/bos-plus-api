@@ -44,8 +44,36 @@ message PowerConstraints {
   braiins.bos.v1.Power max = 3;
 }
 
+message HashrateConstraints {
+  braiins.bos.v1.TeraHashrate default = 1;
+  braiins.bos.v1.TeraHashrate min = 2;
+  braiins.bos.v1.TeraHashrate max = 3;
+}
+
 message TemperatureConstraints {
   braiins.bos.v1.Temperature default = 1;
   braiins.bos.v1.Temperature min = 2;
   braiins.bos.v1.Temperature max = 3;
+}
+
+message BooleanConstraint {
+  bool default = 1;
+}
+
+message DurationConstraints {
+  braiins.bos.v1.Hours default = 1;
+  braiins.bos.v1.Hours min = 2;
+  braiins.bos.v1.Hours max = 3;
+}
+
+message FrequencyConstraints {
+  braiins.bos.v1.Frequency default = 1;
+  braiins.bos.v1.Frequency min = 2;
+  braiins.bos.v1.Frequency max = 3;
+}
+
+message VoltageConstraints {
+  braiins.bos.v1.Voltage default = 1;
+  braiins.bos.v1.Voltage min = 2;
+  braiins.bos.v1.Voltage max = 3;
 }
