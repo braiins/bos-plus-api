@@ -24,13 +24,26 @@ syntax = "proto3";
 
 package braiins.bos.v1;
 
+// Request for login action.
 message LoginRequest {
   string username = 1;
   string password = 2;
 }
 
+// Response for login action.
 message LoginResponse {}
 
+// Request for set password action.
+message SetPasswordRequest {
+  optional string password = 1;
+}
+
+// Response for set password action.
+message SetPasswordResponse {}
+
 service AuthenticationService {
+  // Method to login and retrieve authentication token
   rpc Login(LoginRequest) returns (LoginResponse);
+  // Method to set password
+  rpc SetPassword(SetPasswordRequest) returns (SetPasswordResponse);
 }

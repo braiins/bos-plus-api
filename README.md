@@ -5,10 +5,11 @@ This repository contains protocol buffers for the new Braiins OS+ Public API, wh
 
 ### Versions
 
-| Public API Version  | BOS+ version |
-|---------------------|--------------|
-| 1.0.0-beta (latest) | 23.04        |
-| 1.0.0-alpha         | 23.03        |
+| Public API Version    | BOS+ version |
+|-----------------------|--------------|
+| 1.0.0-beta.1 (latest) | 23.05        |
+| 1.0.0-beta            | 23.04        |
+| 1.0.0-alpha           | 23.03        |
 
 ### Overview
 
@@ -185,10 +186,14 @@ Contains miner actions related protobuf messages and **ActionsService** with var
 * **PauseMining** - method to pause mining,
 * **ResumeMining** - method to resume mining,
 * **Restart** - method to restart mining,
-* **Reboot** - method to reboot whole miner.
+* **Reboot** - method to reboot whole miner,
+* **SetLocateDeviceStatus** - method to enable/disable locate device mode,
+* **GetLocateDeviceStatus** - method to retrieve the locate device mode status.
 
 #### 2. proto/bos/v1/authentication.proto
-Contains **AuthenticationService** with **login** method to log in and get auth. token.
+Contains authentication related messages and **AuthenticationService** with various methods:
+* **Login** - method to log in and get auth. token,
+* **SetPassword** - method to set new password.
 
 #### 3. proto/bos/v1/common.proto
 Contains **SaveAction** enumeration used for setting configuration. Options:
@@ -217,7 +222,8 @@ Contains license related messages and **LicenseService** with method to read lic
 Contains miner related messages and **MinerService** with various methods to read info about miner:
 * **GetMinerDetails** - method to read miner details info like model, IP, uptime, etc.,
 * **GetMinerStats** - method to read aggregated miner stats,
-* **GetHashboards** - method to read miner hashboards state and statistics.
+* **GetHashboards** - method to read miner hashboards state and statistics,
+* **GetSupportArchive** - method to download BOS support archive.
 
 #### 9. proto/bos/v1/pool.proto
 Contains pools related messages and **PoolService** with various methods to read or modify pool settings:
