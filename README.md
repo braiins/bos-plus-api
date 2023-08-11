@@ -5,10 +5,13 @@ This repository contains protocol buffers for the new Braiins OS+ Public API, wh
 
 ### Versions
 
-| Public API Version     | BOS+ version |
-|------------------------|--------------|
-| 1.0.0-alpha.1 (latest) | 23.03.3      |
-| 1.0.0-alpha            | 23.03        |
+| Public API Version    | BOS+ version |
+|-----------------------|--------------|
+| 1.0.0-beta.2 (latest) | 23.08        |
+| 1.0.0-beta.1          | 23.05        |
+| 1.0.0-beta            | 23.04        |
+| 1.0.0-alpha.1         | 23.03.3      |
+| 1.0.0-alpha           | 23.03        |
 
 ### Overview
 
@@ -173,7 +176,7 @@ $ grpcurl -plaintext miner:50051 braiins.bos.ApiVersionService/GetApiVersion
   "pre": "alpha"
 }
 ```
-Note: this is actually `1.0.0-alpha`. `0` as default value was dropped during serialization.
+**Note**: Version `1.0.0-<ver>` is actually `1.0.0-<ver>.0`. `0` as default value was dropped during serialization.
 
 
 ### Proto files
@@ -184,7 +187,9 @@ Contains miner actions related protobuf messages and **ActionsService** with var
 * **PauseMining** - method to pause mining,
 * **ResumeMining** - method to resume mining,
 * **Restart** - method to restart mining,
-* **Reboot** - method to reboot whole miner.
+* **Reboot** - method to reboot whole miner,
+* **SetLocateDeviceStatus** - method to enable/disable locate device mode,
+* **GetLocateDeviceStatus** - method to retrieve the locate device mode status.
 
 #### 2. proto/bos/v1/authentication.proto
 Contains authentication related messages and **AuthenticationService** with various methods:
@@ -196,7 +201,7 @@ Contains **SaveAction** enumeration used for setting configuration. Options:
 * `SAVE_ACTION_SAVE` - only save new configuration
 * `SAVE_ACTION_SAVE_AND_APPLY` - save and apply new configuration
 * `SAVE_ACTION_SAVE_AND_FORCE_APPLY` - save and force apply new configuration
-* 
+
 #### 4. proto/bos/v1/configuration.proto
 Contains configuration related messages and **ConfigurationService** with various methods to read or modify miner settings:
 * **GetMinerConfiguration** - method to read current miner configuration,
@@ -210,32 +215,50 @@ Contains cooling related messages and **CoolingService** with various methods to
 * **GetCoolingState** - method to read current temperature measurements and fans states,
 * **SetImmersionMode** - method to set/toggle immersion mode.
 
-#### 7. proto/bos/v1/miner.proto
+#### 7. proto/bos/v1/license.proto
+Contains license related messages and **LicenseService** with method to read license state:
+* **GetLicenseState** - method to read current license state.
+
+#### 8. proto/bos/v1/miner.proto
 Contains miner related messages and **MinerService** with various methods to read info about miner:
+* **GetMinerStatus** - method to fetch miner status,
 * **GetMinerDetails** - method to read miner details info like model, IP, uptime, etc.,
 * **GetMinerStats** - method to read aggregated miner stats,
-* **GetHashboards** - method to read miner hashboards state and statistics.
+* **GetHashboards** - method to read miner hashboards state and statistics,
+* **GetSupportArchive** - method to download BOS support archive,
+* **EnableHashboards** - method to enable hashboards,
+* **DisableHashboards** - method to disable hashboards.
 
-#### 8. proto/bos/v1/pool.proto
-Contains pools related messages and **PoolService** with various methods to read or modify pool settings:
-* **GetPoolGroups** - method to read current pools state and statistics,
-* **UpdatePoolGroup** - method to update default pool group.
-
-#### 9. proto/bos/v1/tuner.proto
+#### 9. proto/bos/v1/performance.proto
 Contains tuner related messages and **TunerService** with various methods to read or modify tuner:
 * **GetTunerState** - method to read current tuner state and available tuner profiles,
+* **ListTargetProfiles** - method to set default power target,
 * **SetDefaultPowerTarget** - method to set default power target,
-* **SetAbsolutePowerTarget** - method to set specific power target,
+* **SetPowerTarget** - method to set specific power target,
 * **IncrementPowerTarget** - method to increment currently configured power target by a specific value,
-* **DecrementPowerTarget** - method to decrement current configured power target by a specific value.
+* **DecrementPowerTarget** - method to decrement current configured power target by a specific value,
+* **SetDefaultHashrateTarget** - method to set default hashrate target,
+* **SetHashrateTarget** - method to set specific hashrate target,
+* **IncrementHashrateTarget** - method to increment currently configured hashrate target by a specific value,
+* **DecrementHashrateTarget** - method to decrement current configured hashrate target by a specific value,
+* **SetDPS** - method to set Dynamic Performance Scaling,
+* **SetPerformanceMode** - method to set performance mode,
+* **GetActivePerformanceMode** - method to read active(runtime) performance mode.
 
-#### 10. proto/bos/v1/units.proto
+#### 10. proto/bos/v1/pool.proto
+Contains pools related messages and **PoolService** with various methods to read or modify pool settings:
+* **GetPoolGroups** - method to read current pools state and statistics,
+* **CreatePoolGroup** - method to create pool group
+* **UpdatePoolGroup** - method to update default pool group,
+* **RemovePoolGroup** - method to remove pool group.
+
+#### 11. proto/bos/v1/units.proto
 Contains protobuf messages representing various units like Voltage, Frequency, etc.
 
-#### 11. proto/bos/v1/work.proto
+#### 12. proto/bos/v1/work.proto
 Contains mining work related protobuf messages.
 
-#### 12. proto/bos/version.proto
+#### 13. proto/bos/version.proto
 Contains **ApiVersionService** service with **GetApiVersion** to be able to read current Public API version available for communication with miner
 
 

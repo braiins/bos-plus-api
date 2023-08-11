@@ -24,6 +24,7 @@ syntax = "proto3";
 
 package braiins.bos.v1;
 
+import "bos/v1/common.proto";
 import "bos/v1/cooling.proto";
 import "bos/v1/pool.proto";
 import "bos/v1/units.proto";
@@ -37,6 +38,8 @@ enum Platform {
   PLATFORM_AM2_S17 = 2;
   PLATFORM_AM3_BBB = 3;
   PLATFORM_AM3_AML = 4;
+  PLATFORM_STM32MP157C_II1_AM2 = 5;
+  PLATFORM_CVITEK_BM1_AM2 = 6;
 }
 
 // BOS modes enumeration
@@ -91,6 +94,21 @@ message BosVersion {
   bool bos_plus = 3;
 }
 
+enum MinerStatus {
+  MINER_STATUS_UNSPECIFIED = 0;
+  MINER_STATUS_NOT_STARTED = 1;
+  MINER_STATUS_NORMAL = 2;
+  MINER_STATUS_PAUSED = 3;
+  MINER_STATUS_SUSPENDED = 4;
+  MINER_STATUS_RESTRICTED = 5;
+}
+
+message GetMinerStatusRequest {}
+
+message GetMinerStatusResponse {
+  MinerStatus status = 1;
+}
+
 message GetMinerDetailsRequest {}
 
 // Structure to handle system details
@@ -115,31 +133,42 @@ message GetMinerDetailsResponse {
   braiins.bos.v1.GigaHashrate sticker_hashrate = 9;
 }
 
+message MinerPowerStats {
+  // Miner approximated power consumption.
+  braiins.bos.v1.Power approximated_consumption = 1;
+  // Miner power efficiency
+  braiins.bos.v1.PowerEfficiency efficiency = 2;
+}
+
 message GetMinerStatsRequest {}
 
 message GetMinerStatsResponse {
   // Aggregate pool statistic
-  braiins.bos.v1.PoolStats pool_stats = 2;
+  braiins.bos.v1.PoolStats pool_stats = 1;
   // Miner hashrate statistics
-  braiins.bos.v1.WorkSolverStats miner_stats = 1;
+  braiins.bos.v1.WorkSolverStats miner_stats = 2;
+  // Miner power stats
+  MinerPowerStats power_stats = 3;
 }
 
 // Structure to handle HB details
 message Hashboard {
   // Hashboard ID
-  uint32 id = 1;
+  string id = 1;
+  // Flag if HB is enabled
+  bool enabled = 2;
   // Number of chips
-  google.protobuf.UInt32Value chips_count = 2;
+  google.protobuf.UInt32Value chips_count = 3;
   // Current HB voltage in volts
-  braiins.bos.v1.Voltage current_voltage = 3;
+  braiins.bos.v1.Voltage current_voltage = 4;
   // Current HB frequency in Hz
-  braiins.bos.v1.Frequency current_frequency = 4;
+  braiins.bos.v1.Frequency current_frequency = 5;
   // Highest chip temperature
-  braiins.bos.v1.TemperatureSensor highest_chip_temp = 5;
+  braiins.bos.v1.TemperatureSensor highest_chip_temp = 6;
   // Board temperature
-  braiins.bos.v1.Temperature board_temp = 6;
+  braiins.bos.v1.Temperature board_temp = 7;
   // Hashboard stats
-  braiins.bos.v1.WorkSolverStats stats = 7;
+  braiins.bos.v1.WorkSolverStats stats = 8;
 }
 
 // Enumeration for support archive format
@@ -168,7 +197,40 @@ message GetHashboardsResponse {
   repeated Hashboard hashboards = 1;
 }
 
+message EnableHashboardsRequest {
+  // Save action
+  braiins.bos.v1.SaveAction save_action = 1;
+  // IDs of HB that should be enabled
+  repeated string hashboard_ids = 2;
+}
+
+message EnableHashboardsResponse {
+  // Hashboards enable state
+  repeated HashboardEnableState hashboards = 1;
+}
+
+message DisableHashboardsRequest {
+  // Save action
+  braiins.bos.v1.SaveAction save_action = 1;
+  // IDs of HB that should be disabled
+  repeated string hashboard_ids = 2;
+}
+
+message DisableHashboardsResponse {
+  // Hashboards disable state
+  repeated HashboardEnableState hashboards = 1;
+}
+
+message HashboardEnableState {
+  // Hashboard ID
+  string id = 1;
+  // Flag if hashboard is enabled or not
+  bool is_enabled = 2;
+}
+
 service MinerService {
+  // Method to fetch miner status
+  rpc GetMinerStatus(GetMinerStatusRequest) returns (stream GetMinerStatusResponse);
   // Method to get miner details.
   rpc GetMinerDetails(GetMinerDetailsRequest) returns (GetMinerDetailsResponse);
   // Method to get aggregated miner stats.
@@ -178,4 +240,8 @@ service MinerService {
   // Method to download BOS support archive
   // Method returns stream of messages with binary chunks that needs to be concatenated on the caller side
   rpc GetSupportArchive(GetSupportArchiveRequest) returns (stream GetSupportArchiveResponse);
+  // Method to enable hashboards
+  rpc EnableHashboards(EnableHashboardsRequest) returns (EnableHashboardsResponse);
+  // Method to disable hashboards
+  rpc DisableHashboards(DisableHashboardsRequest) returns (DisableHashboardsResponse);
 }

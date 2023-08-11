@@ -124,9 +124,9 @@ message GetCoolingStateResponse {
 
 // Request to set immersion mode
 message SetImmersionModeRequest {
+  braiins.bos.v1.SaveAction save_action = 1;
   // Flag to enable or disable immersion mode
-  bool enable_immersion_mode = 1;
-  braiins.bos.v1.SaveAction save_action = 2;
+  bool enable_immersion_mode = 2;
 }
 
 // Response for set immersion mode action.
