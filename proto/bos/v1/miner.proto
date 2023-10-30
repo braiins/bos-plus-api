@@ -58,32 +58,9 @@ enum MinerBrand {
   MINER_BRAND_WHATSMINER = 2;
 }
 
-enum MinerModel {
-  MINER_MODEL_UNSPECIFIED = 0;
-  MINER_MODEL_ANTMINER_S9 = 1;
-  MINER_MODEL_ANTMINER_X17 = 2;
-  MINER_MODEL_ANTMINER_S17 = 3;
-  MINER_MODEL_ANTMINER_S17_PLUS = 4;
-  MINER_MODEL_ANTMINER_S17_PRO = 5;
-  MINER_MODEL_ANTMINER_S17E = 6;
-  MINER_MODEL_ANTMINER_T17 = 7;
-  MINER_MODEL_ANTMINER_T17E = 8;
-  MINER_MODEL_ANTMINER_T17_PLUS = 9;
-  MINER_MODEL_ANTMINER_X19 = 10;
-  MINER_MODEL_ANTMINER_S19 = 11;
-  MINER_MODEL_ANTMINER_S19_PRO = 12;
-  MINER_MODEL_ANTMINER_S19_PLUS = 13;
-  MINER_MODEL_ANTMINER_S19J = 14;
-  MINER_MODEL_ANTMINER_S19J_PRO = 15;
-  MINER_MODEL_ANTMINER_S19A = 16;
-  MINER_MODEL_ANTMINER_S19A_PRO = 17;
-  MINER_MODEL_ANTMINER_S19XP = 18;
-  MINER_MODEL_ANTMINER_T19 = 19;
-}
-
 message MinerIdentity {
   MinerBrand brand = 1;
-  MinerModel model = 2;
+  string model = 2;
   string name = 3;
 }
 
@@ -131,6 +108,8 @@ message GetMinerDetailsResponse {
   uint64 system_uptime = 8;
   // Miner hashrate declared by manufacturer
   braiins.bos.v1.GigaHashrate sticker_hashrate = 9;
+  // Bosminer uptime. `0` means bosminer is not running
+  uint64 bosminer_uptime_s = 10;
 }
 
 message MinerPowerStats {

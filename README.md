@@ -7,7 +7,8 @@ This repository contains protocol buffers for the new Braiins OS+ Public API, wh
 
 | Public API Version    | BOS+ version |
 |-----------------------|--------------|
-| 1.0.0-beta.2 (latest) | 23.08        |
+| 1.0.0-beta.3 (latest) | 23.10        |
+| 1.0.0-beta.2          | 23.08        |
 | 1.0.0-beta.1          | 23.05        |
 | 1.0.0-beta            | 23.04        |
 | 1.0.0-alpha.1         | 23.03.3      |
