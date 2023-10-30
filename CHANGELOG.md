@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.0-beta.3] - 2023-11-02
+Version **1.0.0-beta.3** contains a few minor improvements.
+
+### Added
+* Extension of the `braiins.bos.v1.GetMinerDetailsResponse` message with `bosminer_uptime_s` field that contains bosminer uptime.
+
+### Breaking Changes:
+* We removed `braiins.bos.v1.MinerModel` enumeration and changed type of `model` field in `braiins.bos.v1.MinerIdentity` to `string`. Replacing model enumeration with string eliminates the need to release a new version every time we add support for new model,
+
 ## [1.0.0-beta.2] - 2023-08-10
 Version **1.0.0-beta.2** extends performance management and Pool Group management possibilities. It also introduces an API to get Mining Status.
 
@@ -13,7 +22,7 @@ Formerly, users could only configure power target values. Now, we made it possib
 This release adds the possibility to configure Dynamic Performance Scaling parameters. Users now can fully optimize their operations to their unique requirements using Public API.
 
 ##### Augmented Hashboard Administration
-We have extended the hashboards management. Public API now lets users to activate or deactivate the individual hashboards.
+We have extended the hashboards management. Public API now lets users activate or deactivate individual hashboards.
 
 #### Evolved Pool Group Management
 Previously only single pool group modifications were possible. We have reworked the Public API to allow addition of new pool groups and removal of existing ones.

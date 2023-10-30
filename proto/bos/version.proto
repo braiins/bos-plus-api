@@ -31,7 +31,7 @@ package braiins.bos;
 // proto3 extensions and proto3 does not allow specifying custom
 // default values. Value follows semver format.
 
-// LATEST_API_VERSION=1.0.0-beta.2
+// LATEST_API_VERSION=1.0.0-beta.3
 message ApiVersion {
   uint64 major = 1;
   uint64 minor = 2;
