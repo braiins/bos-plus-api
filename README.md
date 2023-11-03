@@ -231,7 +231,7 @@ Contains miner related messages and **MinerService** with various methods to rea
 * **DisableHashboards** - method to disable hashboards.
 
 #### 9. proto/bos/v1/performance.proto
-Contains tuner related messages and **TunerService** with various methods to read or modify tuner:
+Contains tuner related messages and **PerformanceService** with various methods to read or modify tuner:
 * **GetTunerState** - method to read current tuner state and available tuner profiles,
 * **ListTargetProfiles** - method to set default power target,
 * **SetDefaultPowerTarget** - method to set default power target,
