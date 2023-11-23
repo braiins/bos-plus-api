@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0-beta.4] - 2023-11-23
+Version **1.0.0-beta.4** contains one new feature and one breaking change.
+
+### Added
+* We added option to clean tuner profiles by adding `braiins.bos.v1.PerformanceService::RemoveTunedProfiles`
+* Introduced a new field `system_uptime_s` in the `braiins.bos.v1.GetMinerDetailsResponse` that replaces `system_uptime`(marked as deprecated) to keep the best practice that a field name should also describe the unit (when applicable).
+
+### Breaking Changes:
+* We reverted removing `braiins.bos.v1.MinerModel` enumeration from the previous release because this change was causing troubles to our users.
+  Instead of dropping enumeration, we decided to mark it as deprecated and introduce new field `miner_model` for string representation.
+
 ## [1.0.0-beta.3] - 2023-11-02
 Version **1.0.0-beta.3** contains a few minor improvements.
 

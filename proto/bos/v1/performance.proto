@@ -354,6 +354,10 @@ message PerformanceMode {
 
 message GetPerformanceModeRequest {}
 
+message RemoveTunedProfilesRequest {}
+
+message RemoveTunedProfilesResponse {}
+
 service PerformanceService {
   // Method to get the current tuner details
   rpc GetTunerState(GetTunerStateRequest) returns (GetTunerStateResponse);
@@ -381,4 +385,6 @@ service PerformanceService {
   rpc SetPerformanceMode(SetPerformanceModeRequest) returns (PerformanceMode);
   // Method to read active(runtime) performance mode
   rpc GetActivePerformanceMode(GetPerformanceModeRequest) returns (PerformanceMode);
+  // Method to remove tuned profiles
+  rpc RemoveTunedProfiles(RemoveTunedProfilesRequest) returns (RemoveTunedProfilesResponse);
 }
