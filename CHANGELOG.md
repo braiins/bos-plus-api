@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.0-beta.5] - 2023-12-14
+Version **1.0.0-beta.5** contains one small extension.
+
+### Added
+* Extension of the `braiins.bos.v1.Platform` enumeration with new value for Zynq.
+
 ## [1.0.0-beta.4] - 2023-11-23
 Version **1.0.0-beta.4** contains one new feature and one breaking change.
 
