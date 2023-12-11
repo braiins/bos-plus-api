@@ -62,11 +62,21 @@ message DPSConfiguration {
   braiins.bos.v1.Power min_power_target = 4;
   // Dynamic Performance Scaling minimal hashrate target
   braiins.bos.v1.TeraHashrate min_hashrate_target = 5;
-  // Flag if shutdown for Dynamic Performance Scaling is enabled
-  optional bool shutdown_enabled = 6;
+  // Dynamic Performance Scaling shudown mode
+  oneof shutdown_mode {
+    // Dynamic Performance Scaling shutdown enabled
+    DPSShutdownEnabled enabled = 1;
+    // Dynamic Performance Scaling shutdown enabled
+    DPSShutdownDisabled disabled = 2;
+  }
+}
+
+message DPSShutdownEnabled {
   // Dynamic Performance Scaling shutdown duration
   braiins.bos.v1.Hours shutdown_duration = 7;
 }
+
+message DPSShutdownDisabled {}
 
 message HashboardPerformanceConfiguration {
   // Common frequency for all HB
