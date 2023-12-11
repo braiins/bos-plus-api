@@ -51,6 +51,13 @@ message TunerConstraints {
   braiins.bos.v1.HashrateConstraints hashrate_target = 2;
 }
 
+message DPSShutdownEnabled {
+  // Dynamic Performance Scaling shutdown duration
+  braiins.bos.v1.Hours shutdown_duration = 7;
+}
+
+message DPSShutdownDisabled {}
+
 message DPSConfiguration {
   // Flag if Dynamic Performance Scaling is enabled
   optional bool enabled = 1;
@@ -65,18 +72,11 @@ message DPSConfiguration {
   // Dynamic Performance Scaling shudown mode
   oneof shutdown_mode {
     // Dynamic Performance Scaling shutdown enabled
-    DPSShutdownEnabled enabled = 1;
+    DPSShutdownEnabled enabled = 6;
     // Dynamic Performance Scaling shutdown enabled
-    DPSShutdownDisabled disabled = 2;
+    DPSShutdownDisabled disabled = 7;
   }
 }
-
-message DPSShutdownEnabled {
-  // Dynamic Performance Scaling shutdown duration
-  braiins.bos.v1.Hours shutdown_duration = 7;
-}
-
-message DPSShutdownDisabled {}
 
 message HashboardPerformanceConfiguration {
   // Common frequency for all HB
@@ -281,9 +281,12 @@ message SetDPSRequest {
   // Flag if Dynamic Performance Scaling should be enabled
   optional bool enable = 2;
   // Flag if shutdown for Dynamic Performance Scaling should be enabled
-  optional bool enable_shutdown = 3;
-  // Dynamic Performance Scaling shutdown duration
-  optional braiins.bos.v1.Hours shutdown_duration = 4;
+  oneof shutdown_mode {
+    // Dynamic Performance Scaling shutdown enabled
+    DPSShutdownEnabled enabled = 3;
+    // Dynamic Performance Scaling shutdown enabled
+    DPSShutdownDisabled disabled = 4;
+  }
   // Dynamic Performance Scaling target
   DPSTarget target = 5;
 }
