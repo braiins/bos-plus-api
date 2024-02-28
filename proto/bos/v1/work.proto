@@ -26,6 +26,8 @@ package braiins.bos.v1;
 
 import "bos/v1/units.proto";
 
+option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
+
 // Structure which contains HB real hashrate stats.
 message RealHashrate {
   braiins.bos.v1.GigaHashrate last_5s = 1;

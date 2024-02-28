@@ -26,6 +26,8 @@ package braiins.bos.v1;
 
 import "bos/v1/common.proto";
 
+option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
+
 // Structure for quota load balance strategy
 message Quota {
   uint32 value = 1;

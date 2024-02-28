@@ -24,6 +24,8 @@ syntax = "proto3";
 
 package braiins.bos.v1;
 
+option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
+
 message MegaHashrate {
   double megahash_per_second = 1;
 }

@@ -24,6 +24,8 @@ syntax = "proto3";
 
 package braiins.bos;
 
+option go_package = "github.com/braiins/bos-plus-api/braiins/bos;bos_proto";
+
 // Value of LATEST_API_VERSION constant in comment below
 // is parsed in grpc server (from protoc FileDescriptorSet)
 // and used as response for ApiVersionService.GetApiVersion().

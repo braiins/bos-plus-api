@@ -29,6 +29,8 @@ import "bos/v1/constraints.proto";
 import "bos/v1/units.proto";
 import "google/protobuf/timestamp.proto";
 
+option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
+
 enum TunerMode {
   TUNER_MODE_UNSPECIFIED = 0;
   TUNER_MODE_POWER_TARGET = 1;
