@@ -7,7 +7,8 @@ This repository contains protocol buffers for the new Braiins OS+ Public API, wh
 
 | Public API Version    | BOS+ version |
 |-----------------------|--------------|
-| 1.0.0-beta.5 (latest) | 23.12        |
+| 1.0.0-beta.6 (latest) | 24.02        |
+| 1.0.0-beta.5          | 23.12        |
 | 1.0.0-beta.4          | 23.10.1      |
 | 1.0.0-beta.3          | 23.10        |
 | 1.0.0-beta.2          | 23.08        |
@@ -18,14 +19,15 @@ This repository contains protocol buffers for the new Braiins OS+ Public API, wh
 
 ### Overview
 
-The new Braiins OS+ Public API was released as an alpha version alongside Braiins OS+ version 23.03. This API aims to provide a unified standard for all current and future hardware variants, regardless of manufacturer. However, since it is an alpha version, there might still be some changes in the API in future releases.
+The Braiins OS+ Public API, introduced in version 23.03, represents a significant milestone in our platform's evolution. This API sets a standard for all present and forthcoming hardware variants, irrespective of their manufacturer. While currently in beta, it offers a glimpse into the future of our platform's capabilities. Despite its beta status, the API is actively being refined, with plans for a stable release in the near future.
 
-The API does not cover the full scope of the Bosminer API and GraphQL API in the alpha version. But in the next releases, this gap will be closed.
+### Examples
+
+We've curated a collection of examples demonstrating the utilization of our Public API, conveniently hosted on our GitHub repository: https://github.com/braiins/bos-plus-api-demos. These examples serve as practical guides for integrating our API into your projects, showcasing its versatility and ease of use. Explore the repository to discover hands-on demonstrations tailored to various use cases.
 
 ## Getting Started
 
 gRPC is a high-performance remote procedure call (RPC) framework developed by Google. It allows developers to create efficient and reliable communications between client and server applications running on different platforms and written in different programming languages. Read more about gRPC at **[grpc.io](https://grpc.io)**
-
 
 ### Prerequisites
 * Miner must have port 50051 enabled. As of BOS+ version 23.03.1, it should be enabled by default.
@@ -114,7 +116,7 @@ service AuthenticationService {
 ```
 
 ### Authentication
-Almost all requests require authentication. Requests authorize themselves with a token present in the Authorization header.
+The vast majority of requests necessitate authentication, achieved by presenting a token in the Authorization header. This token primarily functions as a session token rather than an authentication token, mirroring the approach in the Braiins OS+ GUI. Sessions are time-limited, with tokens expiring after 3600 seconds of inactivity. Renewed activity prolongs the session, effectively extending its expiration. Consequently, a session remains active if requests are consistently made within short intervals.
 
 #### How to get auth token
 Send a request with username and password to **Login** method in **AuthenticationService**. The token is present in the **authorization** header. To print response header use `-vv` flag for verbose output.
@@ -232,7 +234,12 @@ Contains miner related messages and **MinerService** with various methods to rea
 * **EnableHashboards** - method to enable hashboards,
 * **DisableHashboards** - method to disable hashboards.
 
-#### 9. proto/bos/v1/performance.proto
+#### 9. proto/bos/v1/network.proto
+Contains network related messages and **NetworkService** with various methods to read and modify network settings:
+* **GetNetworkConfiguration** - method to read network configuration,
+* **SetNetworkConfiguration** - method to modify network configuration.
+
+#### 10. proto/bos/v1/performance.proto
 Contains tuner related messages and **PerformanceService** with various methods to read or modify tuner:
 * **GetTunerState** - method to read current tuner state and available tuner profiles,
 * **ListTargetProfiles** - method to set default power target,
@@ -248,20 +255,20 @@ Contains tuner related messages and **PerformanceService** with various methods 
 * **SetPerformanceMode** - method to set performance mode,
 * **GetActivePerformanceMode** - method to read active(runtime) performance mode.
 
-#### 10. proto/bos/v1/pool.proto
+#### 11. proto/bos/v1/pool.proto
 Contains pools related messages and **PoolService** with various methods to read or modify pool settings:
 * **GetPoolGroups** - method to read current pools state and statistics,
 * **CreatePoolGroup** - method to create pool group
 * **UpdatePoolGroup** - method to update default pool group,
 * **RemovePoolGroup** - method to remove pool group.
 
-#### 11. proto/bos/v1/units.proto
+#### 12. proto/bos/v1/units.proto
 Contains protobuf messages representing various units like Voltage, Frequency, etc.
 
-#### 12. proto/bos/v1/work.proto
+#### 13. proto/bos/v1/work.proto
 Contains mining work related protobuf messages.
 
-#### 13. proto/bos/version.proto
+#### 14. proto/bos/version.proto
 Contains **ApiVersionService** service with **GetApiVersion** to be able to read current Public API version available for communication with miner
 
 
