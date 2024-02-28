@@ -28,6 +28,8 @@ import "bos/v1/cooling.proto";
 import "bos/v1/performance.proto";
 import "bos/v1/pool.proto";
 
+option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
+
 message GetMinerConfigurationRequest {}
 
 // Structure to return miner configuration

@@ -28,6 +28,8 @@ import "bos/v1/common.proto";
 import "bos/v1/constraints.proto";
 import "bos/v1/units.proto";
 
+option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
+
 // The temperature control modes.
 // Miner software tries to regulate the fan speed so that miner temperature is approximately at the target temperature.
 // The allowed temperature range is 0-200 degree Celsius.

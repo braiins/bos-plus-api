@@ -31,6 +31,8 @@ import "bos/v1/units.proto";
 import "bos/v1/work.proto";
 import "google/protobuf/wrappers.proto";
 
+option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
+
 // Supported platforms
 enum Platform {
   PLATFORM_UNSPECIFIED = 0;
