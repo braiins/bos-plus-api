@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.0-beta.6] - 2024-03-05
+Version **1.0.0-beta.6** contains one new feature Network configuration.
+
+### Added
+* New `braiins.bos.v1.NetworkService` with `GetNetworkConfiguration` and `SetNetworkConfiguration` methods
+
 ## [1.0.0-beta.5] - 2023-12-14
 Version **1.0.0-beta.5** contains one small extension.
 
