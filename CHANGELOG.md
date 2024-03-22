@@ -6,6 +6,7 @@
 * Introduced new field `enabled` in the `braiins.bos.v1.DPSConfiguration` that provide info, if DPS is enabled by default or not.
 * Introduced new field `enabled` in the `braiins.bos.v1.TunerConstraints` that provide info, if DPS is enabled by default or not.
 * Introduced new field `default_mode` in the `braiins.bos.v1.TunerConstraints` that provide info about default tuner mode.
+* Introduced new field `status` in the `braiins.bos.v1.GetMinerDetailsResponse` that provide info about current miner status.
 
 ## [1.0.0-beta.6] - 2024-03-05
 Version **1.0.0-beta.6** contains one new feature Network configuration.
