@@ -5,17 +5,18 @@ This repository contains protocol buffers for the new Braiins OS+ Public API, wh
 
 ### Versions
 
-| Public API Version    | BOS+ version |
-|-----------------------|--------------|
-| 1.0.0-beta.6 (latest) | 24.02        |
-| 1.0.0-beta.5          | 23.12        |
-| 1.0.0-beta.4          | 23.10.1      |
-| 1.0.0-beta.3          | 23.10        |
-| 1.0.0-beta.2          | 23.08        |
-| 1.0.0-beta.1          | 23.05        |
-| 1.0.0-beta            | 23.04        |
-| 1.0.0-alpha.1         | 23.03.3      |
-| 1.0.0-alpha           | 23.03        |
+| Public API Version | BOS+ version |
+|--------------------|--------------|
+| 1.0.0              | 24.03        |
+| 1.0.0-beta.6       | 24.02        |
+| 1.0.0-beta.5       | 23.12        |
+| 1.0.0-beta.4       | 23.10.1      |
+| 1.0.0-beta.3       | 23.10        |
+| 1.0.0-beta.2       | 23.08        |
+| 1.0.0-beta.1       | 23.05        |
+| 1.0.0-beta         | 23.04        |
+| 1.0.0-alpha.1      | 23.03.3      |
+| 1.0.0-alpha        | 23.03        |
 
 ### Overview
 

@@ -1,12 +1,13 @@
 # Changelog
 
-## [Unreleased] - yyyy-mm-dd
+## [1.0.0] - 2024-03-26
+The first stable release of the Public API incorporates minor enhancements.
 
 ### Added
-* Introduced new field `enabled` in the `braiins.bos.v1.DPSConfiguration` that provide info, if DPS is enabled by default or not.
-* Introduced new field `enabled` in the `braiins.bos.v1.TunerConstraints` that provide info, if DPS is enabled by default or not.
-* Introduced new field `default_mode` in the `braiins.bos.v1.TunerConstraints` that provide info about default tuner mode.
-* Introduced new field `status` in the `braiins.bos.v1.GetMinerDetailsResponse` that provide info about current miner status.
+* Introduced new field `enabled` in the `braiins.bos.v1.DPSConfiguration` that provides info, if DPS is enabled by default or not.
+* Introduced new field `enabled` in the `braiins.bos.v1.TunerConstraints` that provides info, if DPS is enabled by default or not.
+* Introduced new field `default_mode` in the `braiins.bos.v1.TunerConstraints` that provides info about the default tuner mode.
+* Introduced new field `status` in the `braiins.bos.v1.GetMinerDetailsResponse` that provides info about the current miner status.
 
 ## [1.0.0-beta.6] - 2024-03-05
 Version **1.0.0-beta.6** contains one new feature Network configuration.
