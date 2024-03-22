@@ -144,6 +144,8 @@ message GetMinerDetailsResponse {
   uint64 bosminer_uptime_s = 10;
   // System uptime
   uint64 system_uptime_s = 11;
+  // Miner status
+  MinerStatus status = 12;
 }
 
 message MinerPowerStats {
