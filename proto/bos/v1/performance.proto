@@ -49,8 +49,14 @@ message TunerConfiguration {
 }
 
 message TunerConstraints {
+  // Tuner power target mode constraints
   braiins.bos.v1.PowerConstraints power_target = 1;
+  // Tuner hashrate target mode constraints
   braiins.bos.v1.HashrateConstraints hashrate_target = 2;
+  // Tuner enabled enabled default value
+  braiins.bos.v1.BooleanConstraint enabled = 3;
+  // Default tuner mode
+  TunerMode default_mode = 4;
 }
 
 message DPSConfiguration {
@@ -92,6 +98,8 @@ message DPSConstraints {
   braiins.bos.v1.BooleanConstraint shutdown_enabled = 5;
   // Dynamic Performance Scaling shutdown duration constraints
   braiins.bos.v1.DurationConstraints shutdown_duration = 6;
+  // Dynamic Performance Scaling enabled default value
+  braiins.bos.v1.BooleanConstraint enabled = 7;
 }
 
 message HashboardConstraints {
