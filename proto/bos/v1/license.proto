@@ -36,7 +36,8 @@ enum LicenseType {
 
 message NoneLicense {
   // BOS Initialization timeout - number of seconds elapsed since bosminer start
-  // i.e., number of seconds BOS will start mining in restricted mode burning 15% of hashrate
+  // i.e., number of seconds BOS will start mining in restricted mode burning 5% of hashrate
+  // For more, see Section 3.10 of https://braiins.com/os/plus/license
   uint32 time_to_restricted = 1;
 }
 
