@@ -7,6 +7,7 @@ This repository contains protocol buffers for the new Braiins OS+ Public API, wh
 
 | Public API Version | BOS+ version |
 |--------------------|--------------|
+| 1.1.0              | 24.04        |
 | 1.0.0              | 24.03        |
 | 1.0.0-beta.6       | 24.02        |
 | 1.0.0-beta.5       | 23.12        |
@@ -20,7 +21,7 @@ This repository contains protocol buffers for the new Braiins OS+ Public API, wh
 
 ### Overview
 
-The Braiins OS+ Public API, introduced in version 23.03, represents a significant milestone in our platform's evolution. This API sets a standard for all present and forthcoming hardware variants, irrespective of their manufacturer. While currently in beta, it offers a glimpse into the future of our platform's capabilities. Despite its beta status, the API is actively being refined, with plans for a stable release in the near future.
+The Braiins OS+ Public API, introduced in version 23.03, represents a significant milestone in our platform's evolution. This API sets a standard for all present and forthcoming hardware variants, irrespective of their manufacturer. It provides a unified interface for interacting with mining hardware, enabling seamless integration with third-party applications and services. The API is designed to be intuitive, efficient, and versatile, offering a wide range of functionalities to meet diverse requirements.
 
 ### Examples
 
