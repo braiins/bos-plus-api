@@ -4,7 +4,8 @@
 * Introduced new field `last_share_time` in the `braiins.bos.v1.PoolStats` that provides info about last share time,
 * Introduced new field `token` in the `braiins.bos.v1.LoginResponse` that provides info created authentication token that was till now available only in response header,
 * Introduced new field `timeout_s` in the `braiins.bos.v1.LoginResponse` that provides info about authentication token expiration time,
-* Introduced new method `GetNetworkInfo` in the `braiins.bos.v1.NetworkService` to get current network configuration for the default network interface.
+* Introduced new method `GetNetworkInfo` in the `braiins.bos.v1.NetworkService` to get current network configuration for the default network interface,
+* Introduced new field `kernel_version` in the `braiins.bos.v1.GetMinerDetailsResponse` that provides info about Kernel version.
 
 ## [1.0.0] - 2024-03-26
 The first stable release of the Public API incorporates minor enhancements.
