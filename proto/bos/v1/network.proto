@@ -69,9 +69,44 @@ message Static {
   repeated string dns_servers = 4;
 }
 
+message GetNetworkInfoRequest {}
+
+// Response message for GetCurrentNetworkConfiguration
+// Represents the current network configuration for the default network interface.
+// Only IPv4 is supported.
+message GetNetworkInfoResponse {
+  // Name of the network interface
+  string name = 1;
+  // MAC address of the network interface
+  optional string mac_address = 2;
+  // Miner hostname
+  optional string hostname = 3;
+  // Network protocol
+  optional NetworkProtocol protocol = 4;
+  // List of configured DNS servers
+  repeated string dns_servers = 5;
+  // List of assigned IP addresses
+  repeated IpNetwork networks = 6;
+  // Default gateway/route for the interface
+  optional string default_gateway = 7;
+}
+
+enum NetworkProtocol {
+  NETWORK_PROTOCOL_UNSPECIFIED = 0;
+  NETWORK_PROTOCOL_DHCP = 1;
+  NETWORK_PROTOCOL_STATIC = 2;
+}
+
+message IpNetwork {
+  string address = 1;
+  string netmask = 2;
+}
+
 service NetworkService {
   // Method to get network configuration
   rpc GetNetworkConfiguration(GetNetworkConfigurationRequest) returns (GetNetworkConfigurationResponse);
   // Method to set network configuration. You can specify protocol or hostname, or both.
   rpc SetNetworkConfiguration(SetNetworkConfigurationRequest) returns (SetNetworkConfigurationResponse);
+  // Method to get current network configuration for the default network interface
+  rpc GetNetworkInfo(GetNetworkInfoRequest) returns (GetNetworkInfoResponse);
 }
