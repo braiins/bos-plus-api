@@ -33,7 +33,13 @@ message LoginRequest {
 }
 
 // Response for login action.
-message LoginResponse {}
+message LoginResponse {
+  // Token to be used for authentication
+  string token = 1;
+  // Authentication token validity/timeout in seconds.
+  // Token validity refreshed to this value with each request.
+  uint32 timeout_s = 2;
+}
 
 // Request for set password action.
 message SetPasswordRequest {
