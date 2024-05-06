@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.1.0] - 2024-05-09
+Version **1.1.0** introduce possibility to read network configuration, changes in authentication and few more changes. 
+
 ### Added
 * Introduced new field `last_share_time` in the `braiins.bos.v1.PoolStats` that provides info about last share time,
 * Introduced new field `token` in the `braiins.bos.v1.LoginResponse` that provides info created authentication token that was till now available only in response header,
