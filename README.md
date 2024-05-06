@@ -120,32 +120,16 @@ service AuthenticationService {
 The vast majority of requests necessitate authentication, achieved by presenting a token in the Authorization header. This token primarily functions as a session token rather than an authentication token, mirroring the approach in the Braiins OS+ GUI. Sessions are time-limited, with tokens expiring after 3600 seconds of inactivity. Renewed activity prolongs the session, effectively extending its expiration. Consequently, a session remains active if requests are consistently made within short intervals.
 
 #### How to get auth token
-Send a request with username and password to **Login** method in **AuthenticationService**. The token is present in the **authorization** header. To print response header use `-vv` flag for verbose output.
+Send a request with username and password to **Login** method in **AuthenticationService**. The token is present in the response body in `token` field.
 
 ```shell
-$ grpcurl -plaintext -vv -d '{"username": "xxxx", "password": "yyyy"}' miner:50051 braiins.bos.v1.AuthenticationService/Login
-
-Resolved method descriptor:
-rpc Login ( .braiins.bos.v1.LoginRequest ) returns ( .braiins.bos.v1.LoginResponse );
-
-Request metadata to send:
-(empty)
-
-Response headers received:
-authorization: FvZarvVQLCtzNaM6
-content-type: application/grpc
-
-Estimated response size: 0 bytes
-
-Response contents:
+$ grpcurl -plaintext -d '{"username": "xxxx", "password": "yyyy"}' miner:50051 braiins.bos.v1.AuthenticationService/Login
 {
-  
+  "token": "eUInGZBQ4yGyKiDe",
+  "timeoutS": 3600
 }
-
-Response trailers received:
-(empty)
-Sent 1 request and received 1 response
 ```
+**Note:** Legacy way that token is present in the response header `authorization` still works.
 
 #### How to use auth token
 To authenticate requests with a token just add `authorization` header with token using `-H` flag.
