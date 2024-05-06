@@ -146,6 +146,8 @@ message GetMinerDetailsResponse {
   uint64 system_uptime_s = 11;
   // Miner status
   MinerStatus status = 12;
+  // Kernel version
+  string kernel_version = 13;
 }
 
 message MinerPowerStats {
