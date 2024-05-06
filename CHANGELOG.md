@@ -1,5 +1,8 @@
 # Changelog
 
+### Added
+* Introduced new field `last_share_time` in the `braiins.bos.v1.PoolStats` that provides info about last share time.
+
 ## [1.0.0] - 2024-03-26
 The first stable release of the Public API incorporates minor enhancements.
 
