@@ -222,7 +222,8 @@ Contains miner related messages and **MinerService** with various methods to rea
 #### 9. proto/bos/v1/network.proto
 Contains network related messages and **NetworkService** with various methods to read and modify network settings:
 * **GetNetworkConfiguration** - method to read network configuration,
-* **SetNetworkConfiguration** - method to modify network configuration.
+* **SetNetworkConfiguration** - method to modify network configuration,
+* **GetNetworkInfo** - method to get current network configuration for the default network interface.
 
 #### 10. proto/bos/v1/performance.proto
 Contains tuner related messages and **PerformanceService** with various methods to read or modify tuner:
