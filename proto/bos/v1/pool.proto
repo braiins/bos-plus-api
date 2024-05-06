@@ -25,6 +25,7 @@ syntax = "proto3";
 package braiins.bos.v1;
 
 import "bos/v1/common.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
 
@@ -114,6 +115,8 @@ message PoolStats {
   uint64 best_share = 5;
   // Generated work
   uint64 generated_work = 6;
+  // Last share time
+  optional google.protobuf.Timestamp last_share_time = 7;
 }
 
 // Request to get pool groups data
