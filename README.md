@@ -249,6 +249,7 @@ Contains pools related messages and **PoolService** with various methods to read
 * **CreatePoolGroup** - method to create pool group
 * **UpdatePoolGroup** - method to update default pool group,
 * **RemovePoolGroup** - method to remove pool group.
+* **SetPoolGroups** - method to set all pool groups at once.
 
 #### 12. proto/bos/v1/units.proto
 Contains protobuf messages representing various units like Voltage, Frequency, etc.
