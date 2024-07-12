@@ -1,5 +1,8 @@
 # Changelog
 
+### Added
+* Introduced new field `model` in the `braiins.bos.v1.Hashboard` message that contains hashboard name.
+
 ## [1.1.0] - 2024-05-09
 Version **1.1.0** introduce possibility to read network configuration, changes in authentication and few more changes. 
 
