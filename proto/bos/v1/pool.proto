@@ -171,6 +171,23 @@ message RemovePoolGroupRequest {
 // Response for pool group remove action
 message RemovePoolGroupResponse {}
 
+// Request for setting pool groups
+message SetPoolGroupsRequest {
+  // Save action
+  // SAVE just update config but changes will not be applied
+  // SAVE_AND_APPLY and SAVE_AND_FORCE_APPLY are equal for this method. Pools config will be updated and changes will be applied that will trigger restart.
+  braiins.bos.v1.SaveAction save_action = 1;
+  // Pool groups configuration
+  // `uid` must not be specified (it will be generated)
+  repeated PoolGroupConfiguration pool_groups = 2;
+}
+
+// Response on setting pool groups
+message SetPoolGroupsResponse {
+  // Configured pool groups
+  repeated PoolGroupConfiguration pool_groups = 1;
+}
+
 service PoolService {
   // Read method to get current pool groups data
   rpc GetPoolGroups(GetPoolGroupsRequest) returns (GetPoolGroupsResponse);
@@ -180,4 +197,6 @@ service PoolService {
   rpc UpdatePoolGroup(UpdatePoolGroupRequest) returns (UpdatePoolGroupResponse);
   // Method to remove pool group
   rpc RemovePoolGroup(RemovePoolGroupRequest) returns (RemovePoolGroupResponse);
+  // Method to set pool groups. Existing pool groups will be completely replaced with new groups.
+  rpc SetPoolGroups(SetPoolGroupsRequest) returns (SetPoolGroupsResponse);
 }
