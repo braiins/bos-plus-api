@@ -2,6 +2,7 @@
 
 ### Added
 * Introduced new field `model` in the `braiins.bos.v1.Hashboard` message that contains hashboard name.
+* Introduced new method `GetErrors` in the `braiins.bos.v1.MinerService` to get all miner errors,
 
 ## [1.1.0] - 2024-05-09
 Version **1.1.0** introduce possibility to read network configuration, changes in authentication and few more changes. 
