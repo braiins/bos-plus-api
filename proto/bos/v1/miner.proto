@@ -112,6 +112,24 @@ enum MinerStatus {
   MINER_STATUS_RESTRICTED = 5;
 }
 
+message ErrorCode {
+  string code = 1;
+  string reason = 2;
+  string hint = 3;
+}
+
+message Component {
+  string name = 1;
+  uint32 index = 2;
+}
+
+message MinerError {
+  string timestamp = 1;
+  string message = 2;
+  repeated ErrorCode error_codes = 3;
+  repeated Component components = 4;
+}
+
 message GetMinerStatusRequest {}
 
 message GetMinerStatusResponse {
@@ -166,6 +184,13 @@ message GetMinerStatsResponse {
   braiins.bos.v1.WorkSolverStats miner_stats = 2;
   // Miner power stats
   MinerPowerStats power_stats = 3;
+}
+
+message GetErrorsRequest {}
+
+message GetErrorsResponse {
+  // Array of errors
+  repeated MinerError errors = 1;
 }
 
 // Structure to handle HB details
@@ -254,6 +279,8 @@ service MinerService {
   rpc GetMinerDetails(GetMinerDetailsRequest) returns (GetMinerDetailsResponse);
   // Method to get aggregated miner stats.
   rpc GetMinerStats(GetMinerStatsRequest) returns (GetMinerStatsResponse);
+  // Method to get miner errors
+  rpc GetErrors(GetErrorsRequest) returns (GetErrorsResponse);
   // Method to get miner hashboards state and statistics.
   rpc GetHashboards(GetHashboardsRequest) returns (GetHashboardsResponse);
   // Method to download BOS support archive

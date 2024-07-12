@@ -215,6 +215,7 @@ Contains miner related messages and **MinerService** with various methods to rea
 * **GetMinerStatus** - method to fetch miner status,
 * **GetMinerDetails** - method to read miner details info like model, IP, uptime, etc.,
 * **GetMinerStats** - method to read aggregated miner stats,
+* **GetErrors** - method to get all miner errors,
 * **GetHashboards** - method to read miner hashboards state and statistics,
 * **GetSupportArchive** - method to download BOS support archive,
 * **EnableHashboards** - method to enable hashboards,
