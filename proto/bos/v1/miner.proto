@@ -186,6 +186,8 @@ message Hashboard {
   braiins.bos.v1.Temperature board_temp = 7;
   // Hashboard stats
   braiins.bos.v1.WorkSolverStats stats = 8;
+  // Hashboard model
+  optional string model = 9;
 }
 
 // Enumeration for support archive format
