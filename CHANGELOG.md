@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.0] - 2024-07-17
+Version **1.2.0** introduces the possibility to configure all pool groups at once and read Braiins OS errors.
+
 ### Added
 * Introduced new field `model` in the `braiins.bos.v1.Hashboard` message that contains hashboard name,
 * Introduced new method `GetErrors` in the `braiins.bos.v1.MinerService` to get all miner errors,
