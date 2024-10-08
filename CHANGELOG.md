@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.0] - 2024-10-22
+Version **1.3.0** introduces few small improvements.
+
 ### Changed
 * Extended `braiins.bos.v1.Platform` enumeration with `PLATFORM_STM32MP157C_II2_BMM1` variant,
 * Extended `braiins.bos.v1.SupportArchiveFormat` enumeration with `SUPPORT_ARCHIVE_FORMAT_ZIP_ENCRYPTED` variant.
