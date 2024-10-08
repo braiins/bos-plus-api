@@ -7,6 +7,7 @@ This repository contains protocol buffers for the new Braiins OS+ Public API, wh
 
 | Public API Version | BOS version |
 |--------------------|-------------|
+| 1.3.0              | 24.09       |
 | 1.2.0              | 24.06       |
 | 1.1.0              | 24.04       |
 | 1.0.0              | 24.03       |
@@ -142,8 +143,9 @@ $ grpcurl -plaintext -H 'authorization:FvZarvVQLCtzNaM6' miner:50051 braiins.bos
   "uid": "lAOJ0RbI6axyOyGf",
   "minerIdentity": {
     "brand": "MINER_BRAND_ANTMINER",
-    "model": "MINER_MODEL_ANTMINER_S19J_PRO",
+    "model": "MINER_MODEL_ANTMINER_S19J_PRO", // Deprecated, use miner_model
     "name": "Antminer S19J Pro"
+    "miner_model": "Antminer S19J Pro",
   },
   "platform": "PLATFORM_AM3_BBB",
   "bosMode": "BOS_MODE_NAND",
@@ -152,9 +154,13 @@ $ grpcurl -plaintext -H 'authorization:FvZarvVQLCtzNaM6' miner:50051 braiins.bos
     "major": "2022-09-13-0-11012d53-22.08-plus",
     "bosPlus": true
   },
-  "hostname": "bosminer",
+  "hostname": "localhost",
   "macAddress": "94:e3:6d:fb:89:ad",
-  "systemUptime": "90919"
+  "systemUptime": "90919",  // Deprecated, use system_uptime_s
+  "bosminer_uptime_s": "5050",
+  "system_uptime_s": "90919",
+  "status": "MINER_STATUS_NORMAL",
+  "kernel_version": "3.8.13+"
 }
 
 ```
@@ -164,8 +170,11 @@ It is important to note what version of Public API must be used for communicatio
 ```shell
 $ grpcurl -plaintext miner:50051 braiins.bos.ApiVersionService/GetApiVersion
 {
-  "major": "1",
-  "pre": "alpha"
+    "major": "1",
+    "minor": "3",
+    "patch": "0",
+    "pre": "",
+    "build": ""
 }
 ```
 **Note**: Version `1.0.0-<ver>` is actually `1.0.0-<ver>.0`. `0` as default value was dropped during serialization.
