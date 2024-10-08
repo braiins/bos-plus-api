@@ -223,6 +223,8 @@ enum SupportArchiveFormat {
   SUPPORT_ARCHIVE_FORMAT_ZIP = 1;
   // BOS custom format
   SUPPORT_ARCHIVE_FORMAT_BOS = 2;
+  // Compressed encrypted zip format
+  SUPPORT_ARCHIVE_FORMAT_ZIP_ENCRYPTED = 3;
 }
 
 message GetSupportArchiveRequest {
