@@ -1,5 +1,8 @@
 # Changelog
 
+### Changed
+* Extended `braiins.bos.v1.Platform` enumeration with `PLATFORM_STM32MP157C_II2_BMM1` variant.
+
 ## [1.2.0] - 2024-07-17
 Version **1.2.0** introduces the possibility to configure all pool groups at once and read Braiins OS errors.
 
