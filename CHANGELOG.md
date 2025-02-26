@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.4.0] - 2025-02-26
+Version **1.4.0** introduces possibility to set DPS mode to `normal` or `boost`. It also extends cooling configuration with new values `immersion` and `hydro`.
+
 ### Added
 * Introduced new enumeration `braiins.bos.v1.DPSMode` with `DPS_MODE_NORMAL` and `DPS_MODE_BOOST` variants.
 * Introduced new field `mode` in the `braiins.bos.v1.DPSConfiguration`, `braiins.bos.v1.SetDPSRequest`, `braiins.bos.v1.SetDPSResponse` message to get or set DPS mode.
