@@ -62,12 +62,26 @@ message CoolingDisabledMode {
   optional double fan_speed_ratio = 1;
 }
 
+message CoolingImmersionMode {
+  braiins.bos.v1.Temperature hot_temperature = 1;
+  braiins.bos.v1.Temperature dangerous_temperature = 2;
+  braiins.bos.v1.Temperature target_temperature = 3;
+}
+
+message CoolingHydroMode {
+  braiins.bos.v1.Temperature hot_temperature = 1;
+  braiins.bos.v1.Temperature dangerous_temperature = 2;
+  braiins.bos.v1.Temperature target_temperature = 3;
+}
+
 message CoolingConfiguration {
   optional uint32 minimum_required_fans = 1;
   oneof mode {
     CoolingAutoMode auto = 2;
     CoolingManualMode manual = 3;
     CoolingDisabledMode disabled = 4;
+    CoolingImmersionMode immersion = 5;
+    CoolingHydroMode hydro = 6;
   }
 }
 
@@ -76,6 +90,8 @@ enum CoolingMode {
   COOLING_MODE_AUTO = 1;
   COOLING_MODE_MANUAL = 2;
   COOLING_MODE_DISABLED = 3;
+  COOLING_MODE_IMMERSION = 4;
+  COOLING_MODE_HYDRO = 5;
 }
 
 message CoolingConstraints {
@@ -146,6 +162,8 @@ message SetCoolingModeRequest {
   oneof mode {
     CoolingAutoMode auto = 2;
     CoolingManualMode manual = 3;
+    CoolingImmersionMode immersion = 4;
+    CoolingHydroMode hydro = 5;
   }
 }
 
@@ -155,6 +173,8 @@ message SetCoolingModeResponse {
   oneof mode {
     CoolingAutoMode auto = 1;
     CoolingManualMode manual = 2;
+    CoolingImmersionMode immersion = 3;
+    CoolingHydroMode hydro = 4;
   }
 }
 
