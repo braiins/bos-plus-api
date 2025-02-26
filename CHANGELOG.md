@@ -4,6 +4,7 @@
 * Introduced new enumeration `braiins.bos.v1.DPSMode` with `DPS_MODE_NORMAL` and `DPS_MODE_BOOST` variants.
 * Introduced new field `mode` in the `braiins.bos.v1.DPSConfiguration`, `braiins.bos.v1.SetDPSRequest`, `braiins.bos.v1.SetDPSResponse` message to get or set DPS mode.
 * Introduced new field `mode` in the `braiins.bos.v1.DPSConstraints` message to get the default value for DPS mode.
+* Introduced new method `SetCoolingMode` in the `braiins.bos.v1.CoolingService`. User can now set cooling mode to `automatic` or `manual`. It gives user possibility to set specific temperature and fan settings for each mode.
 
 ## [1.3.0] - 2024-10-22
 Version **1.3.0** introduces few small improvements.

@@ -137,9 +137,32 @@ message SetImmersionModeResponse {
   bool immersion_mode = 1;
 }
 
+// Request to set cooling mode
+message SetCoolingModeRequest {
+  // Save action
+  braiins.bos.v1.SaveAction save_action = 1;
+  // Cooling mode to set. If the cooling mode is changed, all fields that aren't relevant to the new mode are reset to default values.
+  // If the cooling mode values are updated, the new values are applied to the current mode.
+  oneof mode {
+    CoolingAutoMode auto = 2;
+    CoolingManualMode manual = 3;
+  }
+}
+
+// Response for set cooling mode action.
+message SetCoolingModeResponse {
+  // The resulting cooling mode
+  oneof mode {
+    CoolingAutoMode auto = 1;
+    CoolingManualMode manual = 2;
+  }
+}
+
 service CoolingService {
   // Method to get current temperature measurements and fans states
   rpc GetCoolingState(GetCoolingStateRequest) returns (GetCoolingStateResponse);
   // Method to set/toggle immersion mode
   rpc SetImmersionMode(SetImmersionModeRequest) returns (SetImmersionModeResponse);
+  // Method to set cooling mode
+  rpc SetCoolingMode(SetCoolingModeRequest) returns (SetCoolingModeResponse);
 }
