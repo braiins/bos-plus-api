@@ -58,6 +58,8 @@ message CoolingManualMode {
   braiins.bos.v1.Temperature hot_temperature = 2;
   // Temperature threshold at which BOSMiner shuts down in order to prevent overheating and damaging the miner.
   braiins.bos.v1.Temperature dangerous_temperature = 3;
+  // Temperature that the miner will try to maintain when power scaling is enabled
+  braiins.bos.v1.Temperature target_temperature = 4;
   // Minimum number of fans required to have BOSminer operational.
   optional uint32 minimum_required_fans = 5;
 }

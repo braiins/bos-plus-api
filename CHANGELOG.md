@@ -9,6 +9,7 @@
 * Introduced new field `max_fan_speed` in the `braiins.bos.v1.CoolingAutoMode` to set maximum fan speed for automatic cooling mode.
 * Introduced new field `min_fan_speed` in the `braiins.bos.v1.CoolingConstraints` to get default value for minimum fan speed for automatic cooling mode.
 * Introduced new field `max_fan_speed` in the `braiins.bos.v1.CoolingConstraints` to get default value for maximum fan speed for automatic cooling mode.
+* Introduced new field `target_temperature` in the `braiins.bos.v1.CoolingManualMode` to set target temperature for manual cooling mode.
 
 ### Changed
 * Extend `CoolingConfiguration` mode with new value `immersion` that represents immersion cooling mode.
