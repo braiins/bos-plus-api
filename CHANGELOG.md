@@ -12,8 +12,11 @@
 * Introduced new field `target_temperature` in the `braiins.bos.v1.CoolingManualMode` to set target temperature for manual cooling mode.
 
 ### Changed
+* Mark `SetImmersionMode` method as deprecated in `CoolingService`. Instead of this method, user should use `SetCoolingMode` with `immersion` mode.
 * Extend `CoolingConfiguration` mode with new value `immersion` that represents immersion cooling mode.
 * Extend `CoolingConfiguration` mode with new value `hydro` that represents hydro cooling mode.
+* Mark `disabled` cooling mode as deprecated in `CoolingConfiguration` mode.
+* Mark `minimum_required_fans` field as deprecated in `CoolingConfiguration`. Instead user should use `minimum_required_fans` field in `CoolingAutoMode` or `CoolingManualMode`.
 * Extend `CoolingAutoMode` with new field `minimum_required_fans`.
 * Extend `CoolingManualMode` with new field `minimum_required_fans`.
 
