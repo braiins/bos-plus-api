@@ -40,6 +40,12 @@ message CoolingAutoMode {
   braiins.bos.v1.Temperature hot_temperature = 2;
   // Temperature threshold at which BOSMiner shuts down in order to prevent overheating and damaging the miner.
   braiins.bos.v1.Temperature dangerous_temperature = 3;
+  // Minimum fan speed expressed as a value between 0 and 100. min_fan_speed must be less than max_fan_speed.
+  optional uint32 min_fan_speed = 4;
+  // Maximum fan speed expressed as a value between 0 and 100. max_fan_speed must be greater than min_fan_speed.
+  optional uint32 max_fan_speed = 5;
+  // Minimum number of fans required to have BOSminer operational.
+  optional uint32 minimum_required_fans = 6;
 }
 
 // Fans are kept at a fixed, user-defined speed, no matter the temperature.
@@ -52,6 +58,8 @@ message CoolingManualMode {
   braiins.bos.v1.Temperature hot_temperature = 2;
   // Temperature threshold at which BOSMiner shuts down in order to prevent overheating and damaging the miner.
   braiins.bos.v1.Temperature dangerous_temperature = 3;
+  // Minimum number of fans required to have BOSminer operational.
+  optional uint32 minimum_required_fans = 5;
 }
 
 // Disable temperature control. May be dangerous.
@@ -75,6 +83,7 @@ message CoolingHydroMode {
 }
 
 message CoolingConfiguration {
+  // Minimum number of fans required to have BOSminer operational.
   optional uint32 minimum_required_fans = 1;
   oneof mode {
     CoolingAutoMode auto = 2;
@@ -101,6 +110,8 @@ message CoolingConstraints {
   braiins.bos.v1.TemperatureConstraints dangerous_temperature = 4;
   braiins.bos.v1.DoubleConstraints fan_speed_ratio = 5;
   braiins.bos.v1.UInt32Constraints minimum_required_fans = 6;
+  braiins.bos.v1.UInt32Constraints min_fan_speed = 7;
+  braiins.bos.v1.UInt32Constraints max_fan_speed = 8;
 }
 
 // Structure which contain info about one specific miner fan.
