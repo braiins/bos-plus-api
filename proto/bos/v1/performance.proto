@@ -74,6 +74,8 @@ message DPSConfiguration {
   optional bool shutdown_enabled = 6;
   // Dynamic Performance Scaling shutdown duration
   braiins.bos.v1.Hours shutdown_duration = 7;
+  // Dynamic Performance Scaling mode
+  optional braiins.bos.v1.DPSMode mode = 8;
 }
 
 message HashboardPerformanceConfiguration {
@@ -100,6 +102,14 @@ message DPSConstraints {
   braiins.bos.v1.DurationConstraints shutdown_duration = 6;
   // Dynamic Performance Scaling enabled default value
   braiins.bos.v1.BooleanConstraint enabled = 7;
+  // Dynamic Performance Scaling default mode
+  braiins.bos.v1.DPSMode mode = 8;
+}
+
+enum DPSMode {
+  DPS_MODE_UNSPECIFIED = 0;
+  DPS_MODE_NORMAL = 1;
+  DPS_MODE_BOOST = 2;
 }
 
 message HashboardConstraints {
@@ -286,6 +296,8 @@ message SetDPSRequest {
   optional braiins.bos.v1.Hours shutdown_duration = 4;
   // Dynamic Performance Scaling target
   DPSTarget target = 5;
+  // Dynamic Performance Scaling mode
+  optional braiins.bos.v1.DPSMode mode = 6;
 }
 
 message SetDPSResponse {
@@ -299,6 +311,8 @@ message SetDPSResponse {
   DPSPowerTarget power_target = 4;
   // Dynamic Performance Scaling hashrate target
   DPSHashrateTarget hashrate_target = 5;
+  // Dynamic Performance Scaling mode
+  optional braiins.bos.v1.DPSMode mode = 6;
 }
 
 message HashboardPerformanceSettings {
