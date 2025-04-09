@@ -214,6 +214,10 @@ message Hashboard {
   braiins.bos.v1.WorkSolverStats stats = 8;
   // Hashboard model
   optional string model = 9;
+  // Lowest inlet temperature
+  braiins.bos.v1.Temperature lowest_inlet_temp = 10;
+  // Highest outlet temperature
+  braiins.bos.v1.Temperature highest_outlet_temp = 11;
 }
 
 // Enumeration for support archive format
