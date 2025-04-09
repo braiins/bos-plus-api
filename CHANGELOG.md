@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.5.0] - 2025-04-09
+Version **1.5.0** extends Hashboard message to provide lowest inlet and highest outlet temperatures. And HW info including miner serial number from stock FW.
+
 ### Added
 * Introduced new fields `lowest_inlet_temp`, `highest_outlet_temp` in the `braiins.bos.v1.Hashboard` message to get the lowest inlet and highest outlet temperature for a specific hashboard.
 * Introduced new fields `serial_number`, `board_name` and `chip_type` in the `braiins.bos.v1.Hashboard` message.
