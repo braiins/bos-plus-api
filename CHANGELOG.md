@@ -2,8 +2,10 @@
 
 ### Added
 * Introduced new fields `lowest_inlet_temp`, `highest_outlet_temp` in the `braiins.bos.v1.Hashboard` message to get the lowest inlet and highest outlet temperature for a specific hashboard.
+* Introduced new fields `serial_number`, `board_name` and `chip_type` in the `braiins.bos.v1.Hashboard` message.
 * Introduced new `PsuInfo` message and added it to the `braiins.bos.v1.GetMinerDetailsResponse` message.
 * Introduced new `ControlBoardSocFamily` enumeration and added it to the `braiins.bos.v1.GetMinerDetailsResponse` message.
+* Introduced new field `serial_number` in the `braiins.bos.v1.GetMinerDetailsResponse` message.
 
 ## [1.4.0] - 2025-02-26
 Version **1.4.0** introduces possibility to set DPS mode to `normal` or `boost`. It also extends cooling configuration with new values `immersion` and `hydro`.
