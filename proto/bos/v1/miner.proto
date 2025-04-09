@@ -139,6 +139,21 @@ message GetMinerStatusResponse {
 
 message GetMinerDetailsRequest {}
 
+message PsuInfo {
+  // PSU hardware version identifier
+  optional google.protobuf.UInt32Value version = 1;
+  // PSU firmware version identifier
+  optional google.protobuf.UInt32Value fw_version = 2;
+  // PSU serial number (e.g. "DGAH335BDJDJG0782")
+  optional string serial_number = 3;
+  // PSU model/version name in human-readable form (e.g. "APW121215b")
+  optional string model_name = 4;
+  // Minimal voltage that can be set in volts
+  optional braiins.bos.v1.Voltage min_voltage = 5;
+  // Maximal voltage that can be set in volts
+  optional braiins.bos.v1.Voltage max_voltage = 6;
+}
+
 // Structure to handle system details
 message GetMinerDetailsResponse {
   // Miner ID
@@ -167,6 +182,8 @@ message GetMinerDetailsResponse {
   MinerStatus status = 12;
   // Kernel version
   string kernel_version = 13;
+  // PSU details
+  optional PsuInfo psu_info = 14;
 }
 
 message MinerPowerStats {
