@@ -46,6 +46,16 @@ enum Platform {
   PLATFORM_STM32MP157C_II2_BMM1 = 8;
 }
 
+// Control board soc family “CVITEK”, “BBB”, “AML”, “ZYNQ”, "BRAIINS"
+enum ControlBoardSocFamily {
+  CONTROL_BOARD_SOC_FAMILY_UNSPECIFIED = 0;
+  CONTROL_BOARD_SOC_FAMILY_CVITEK = 1;
+  CONTROL_BOARD_SOC_FAMILY_BBB = 2;
+  CONTROL_BOARD_SOC_FAMILY_AML = 3;
+  CONTROL_BOARD_SOC_FAMILY_ZYNQ = 4;
+  CONTROL_BOARD_SOC_FAMILY_BRAIINS = 5;
+}
+
 // BOS modes enumeration
 enum BosMode {
   BOS_MODE_UNSPECIFIED = 0;
@@ -184,6 +194,8 @@ message GetMinerDetailsResponse {
   string kernel_version = 13;
   // PSU details
   optional PsuInfo psu_info = 14;
+  // Control board soc family
+  ControlBoardSocFamily control_board_soc_family = 15;
 }
 
 message MinerPowerStats {
