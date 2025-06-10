@@ -30,6 +30,27 @@ import "bos/v1/units.proto";
 
 option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
 
+// Pause mode to control fans behaviour after you pause the miner
+message PauseMode {
+  oneof mode {
+    AutoPauseMode auto = 1;
+    ManualPauseMode manual = 2;
+  }
+}
+
+// Automatic pause mode starts with fans going with last fan speed used for mining and slowly decreases speed down to 0%
+message AutoPauseMode {}
+
+// Manual pause mode runs with defined fixed fans speed for 2 minutes, then turns off
+message ManualPauseMode {
+  // User defined pause cooldown fan speed expressed as a ratio between 0.0 and 1.0
+  // where 0.0 means completely turned off and
+  // 1.0 means running at full speed possible
+  // Value is not optional for request! Unset value will result in error.
+  // Value is optional for response! It is possible to set manual pause mode without pause cooldown fan speed, but not using the API.
+  optional double pause_cooldown_fan_speed_ratio = 1;
+}
+
 // The temperature control modes.
 // Miner software tries to regulate the fan speed so that miner temperature is approximately at the target temperature.
 // The allowed temperature range is 0-200 degree Celsius.
@@ -46,6 +67,8 @@ message CoolingAutoMode {
   optional uint32 max_fan_speed = 5;
   // Minimum number of fans required to have BOSminer operational.
   optional uint32 minimum_required_fans = 6;
+  // Pause mode used for fans when the miner is paused
+  optional PauseMode pause_mode = 7;
 }
 
 // Fans are kept at a fixed, user-defined speed, no matter the temperature.
@@ -62,6 +85,8 @@ message CoolingManualMode {
   braiins.bos.v1.Temperature target_temperature = 4;
   // Minimum number of fans required to have BOSminer operational.
   optional uint32 minimum_required_fans = 5;
+  // Pause mode
+  optional PauseMode pause_mode = 6;
 }
 
 // Disable temperature control. May be dangerous.
@@ -116,6 +141,7 @@ message CoolingConstraints {
   braiins.bos.v1.UInt32Constraints minimum_required_fans = 6;
   braiins.bos.v1.UInt32Constraints min_fan_speed = 7;
   braiins.bos.v1.UInt32Constraints max_fan_speed = 8;
+  braiins.bos.v1.DoubleConstraints pause_cooldown_fan_speed_ratio = 9;
 }
 
 // Structure which contain info about one specific miner fan.
