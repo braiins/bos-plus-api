@@ -5,6 +5,7 @@
 * Introduced new field `pause_mode` in the `braiins.bos.v1.CoolingAutoMode` message to set and get pause cooldown fan speed for automatic cooling mode.
 * Introduced new field `pause_mode` in the `braiins.bos.v1.CoolingManualMode` message to set and get pause cooldown fan speed for manual cooling mode.
 * Introduced new field `pause_cooldown_fan_speed_ratio` in the `braiins.bos.v1.CoolingConstraints` message to get pause cooldown fan speed constraints.
+* Introduced new method `ApplyContractKey` in the `braiins.bos.v1.LicenseService`. User can now apply contract key to miner and get licence.
 
 ## [1.5.0] - 2025-04-09
 Version **1.5.0** extends Hashboard message to provide lowest inlet and highest outlet temperatures. And HW info including miner serial number from stock FW.

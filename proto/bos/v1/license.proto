@@ -75,6 +75,17 @@ message GetLicenseStateResponse {
   }
 }
 
+message ApplyContractKeyRequest {
+  // Licence contract key string
+  string contract_key = 1;
+}
+
+message ApplyContractKeyResponse {
+  // Flag if custom license was successfully installed
+  bool successful = 1;
+}
+
 service LicenseService {
   rpc GetLicenseState(GetLicenseStateRequest) returns (GetLicenseStateResponse);
+  rpc ApplyContractKey(ApplyContractKeyRequest) returns (ApplyContractKeyResponse);
 }
