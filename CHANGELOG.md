@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.6.0] - 2025-06-10
+Version **1.6.0** introduces enhanced control of fan behavior during cooling mode curtailment and adds ability to apply Custom Contracts.
+
 ### Added
 * Introduced new messages `PauseMode`, `AutoPauseMode` and `ManualPauseMode`.
 * Introduced new field `pause_mode` in the `braiins.bos.v1.CoolingAutoMode` message to set and get pause cooldown fan speed for automatic cooling mode.
