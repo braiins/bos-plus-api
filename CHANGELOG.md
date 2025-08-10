@@ -1,5 +1,9 @@
 # Changelog
 
+### Added
+* Introduced new enumeration `braiins.bos.v1.FanPauseMode` with `FAN_PAUSE_MODE_AUTO` and `FAN_PAUSE_MODE_MANUAL` variants.
+* Introduced new field `default_fan_pause_mode` in the `braiins.bos.v1.CoolingConstraints` message to get default fan pause mode.
+
 ## [1.6.0] - 2025-06-10
 Version **1.6.0** introduces enhanced control of fan behavior during cooling mode curtailment and adds ability to apply Custom Contracts.
 
