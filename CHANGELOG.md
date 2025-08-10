@@ -3,6 +3,11 @@
 ### Added
 * Introduced new enumeration `braiins.bos.v1.FanPauseMode` with `FAN_PAUSE_MODE_AUTO` and `FAN_PAUSE_MODE_MANUAL` variants.
 * Introduced new field `default_fan_pause_mode` in the `braiins.bos.v1.CoolingConstraints` message to get default fan pause mode.
+* Introduced new messages `braiins.bos.v1.SetQuickRampingRequest`, `braiins.bos.v1.QuickRampingResponse` and `braiins.bos.v1.SetDefaultQuickRampingRequest`.
+* Introduced new method `SetQuickRamping` in the `braiins.bos.v1.PerformanceService`. User can now set quick ramping time up and down values.
+* Introduced new method `SetDefaultQuickRamping` in the `braiins.bos.v1.PerformanceService`. User can now set quick ramping time up and down to default.
+* Introduced new fields `quick_ramping_time_up_s` and `quick_ramping_time_down_s` in the `braiins.bos.v1.HashboardPerformanceConfiguration` message to get quick ramping time up and down values.
+* Introduced new field `quick_ramping_time_s` in the `braiins.bos.v1.HashboardConstraints` message to get quick ramping time constraints.
 
 ## [1.6.0] - 2025-06-10
 Version **1.6.0** introduces enhanced control of fan behavior during cooling mode curtailment and adds ability to apply Custom Contracts.

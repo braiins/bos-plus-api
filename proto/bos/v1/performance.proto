@@ -85,6 +85,10 @@ message HashboardPerformanceConfiguration {
   braiins.bos.v1.Voltage global_voltage = 2;
   // Per hashboard frequency/voltage. It has higher priority than global one
   repeated HashboardConfig hashboards = 3;
+  // Quick ramping time up in seconds. Used in curtailments
+  optional uint32 quick_ramping_time_up_s = 4;
+  // Quick ramping time down in seconds. Used in curtailments
+  optional uint32 quick_ramping_time_down_s = 5;
 }
 
 message DPSConstraints {
@@ -121,6 +125,8 @@ message HashboardConstraints {
   braiins.bos.v1.FrequencyConstraints frequency = 3;
   // HB frequency constraints
   braiins.bos.v1.VoltageConstraints voltage = 4;
+  // Quick ramping time constraints in seconds. Used in curtailments
+  braiins.bos.v1.UInt32Constraints quick_ramping_time_s = 5;
 }
 
 // Structure to handle power target profile
@@ -382,6 +388,27 @@ message RemoveTunedProfilesRequest {}
 
 message RemoveTunedProfilesResponse {}
 
+message SetQuickRampingRequest {
+  // Save action
+  braiins.bos.v1.SaveAction save_action = 1;
+  // Quick ramping time up in seconds when RESUMING the miner. Sets how fast the miner will power up. Used in curtailments
+  uint32 up_s = 2;
+  // Quick ramping time down in seconds when PAUSING the miner. Sets how fast the miner will power off. Used in curtailments
+  uint32 down_s = 3;
+}
+
+message QuickRampingResponse {
+  // Quick ramping time up in seconds when RESUMING the miner. Sets how fast the miner will power up. Used in curtailments
+  uint32 up_s = 1;
+  // Quick ramping time down in seconds when PAUSING the miner. Sets how fast the miner will power off. Used in curtailments
+  uint32 down_s = 2;
+}
+
+message SetDefaultQuickRampingRequest {
+  // Save action
+  braiins.bos.v1.SaveAction save_action = 1;
+}
+
 service PerformanceService {
   // Method to get the current tuner details
   rpc GetTunerState(GetTunerStateRequest) returns (GetTunerStateResponse);
@@ -411,4 +438,8 @@ service PerformanceService {
   rpc GetActivePerformanceMode(GetPerformanceModeRequest) returns (PerformanceMode);
   // Method to remove tuned profiles
   rpc RemoveTunedProfiles(RemoveTunedProfilesRequest) returns (RemoveTunedProfilesResponse);
+  // Method to set quick ramping (used in curtailments)
+  rpc SetQuickRamping(SetQuickRampingRequest) returns (QuickRampingResponse);
+  // Method to set default quick ramping (used in curtailments)
+  rpc SetDefaultQuickRamping(SetDefaultQuickRampingRequest) returns (QuickRampingResponse);
 }
