@@ -132,6 +132,12 @@ enum CoolingMode {
   COOLING_MODE_HYDRO = 5;
 }
 
+enum FanPauseMode {
+  FAN_PAUSE_MODE_UNSPECIFIED = 0;
+  FAN_PAUSE_MODE_AUTO = 1;
+  FAN_PAUSE_MODE_MANUAL = 2;
+}
+
 message CoolingConstraints {
   CoolingMode default_cooling_mode = 1;
   braiins.bos.v1.TemperatureConstraints target_temperature = 2;
@@ -142,6 +148,7 @@ message CoolingConstraints {
   braiins.bos.v1.UInt32Constraints min_fan_speed = 7;
   braiins.bos.v1.UInt32Constraints max_fan_speed = 8;
   braiins.bos.v1.DoubleConstraints pause_cooldown_fan_speed_ratio = 9;
+  optional FanPauseMode default_fan_pause_mode = 10;
 }
 
 // Structure which contain info about one specific miner fan.
