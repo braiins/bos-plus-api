@@ -43,8 +43,12 @@ message FixedShareRatio {
 
 // Structure handle configured mining group
 message PoolGroupConfiguration {
-  // Group id
-  string uid = 1;
+  // Group id<br>
+  // gRPC: If this struct is used when creating a new Pool Group, this field must not be specified (it will be generated)<br>
+  // gRPC: If this struct is used when updating an existing Pool Group, this field must be specified and represents unique id of Pool group which will be updated<br>
+  // REST: If this struct is used when creating a new Pool Group, this field must not be specified (it will be generated)<br>
+  // REST: If this struct is used when updating an existing Pool Group, this field must not be specified, uid in URL must be specified and represents unique id of Pool group which will be updated
+  optional string uid = 1;
   // Group name
   string name = 2;
   // Group load balance strategy
@@ -58,8 +62,10 @@ message PoolGroupConfiguration {
 
 // Structure handle information about configured pool
 message PoolConfiguration {
-  // Pool connection id
-  string uid = 1;
+  // Pool connection id<br>
+  // If this struct is used when creating a new Pool Configuration, this field must not be specified (it will be generated)<br>
+  // If this struct is used when updating an existing configuration, this field must be specified and represents unique id of pool which will be updated
+  optional string uid = 1;
   // Pool connection URL
   string url = 2;
   // Pool connection user

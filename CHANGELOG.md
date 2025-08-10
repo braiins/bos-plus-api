@@ -9,6 +9,9 @@
 * Introduced new fields `quick_ramping_time_up_s` and `quick_ramping_time_down_s` in the `braiins.bos.v1.HashboardPerformanceConfiguration` message to get quick ramping time up and down values.
 * Introduced new field `quick_ramping_time_s` in the `braiins.bos.v1.HashboardConstraints` message to get quick ramping time constraints.
 
+### Changed
+* Mark `uid` for `braiins.bos.v1.PoolGroupConfiguration` and `braiins.bos.v1.PoolConfiguration` as optional. This change allows to create new pool group or pool without providing empty `uid` value. When new entity is created `uid` is generated automatically. When updating existing Pool Group with `UpdatePoolGroup` method, `uid` is required, otherwise error is returned back to the user.
+
 ## [1.6.0] - 2025-06-10
 Version **1.6.0** introduces enhanced control of fan behavior during cooling mode curtailment and adds ability to apply Custom Contracts.
 
