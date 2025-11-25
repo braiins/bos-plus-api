@@ -232,6 +232,30 @@ message SetPowerTargetResponse {
   braiins.bos.v1.Power power_target = 1;
 }
 
+// Enum to specify the reference point for a relative power/hashrate target.
+enum RelativeTargetReference {
+  // Unspecified
+  RELATIVE_TARGET_REFERENCE_UNSPECIFIED = 0;
+  // Use nominal (sticker) power/hashrate target as the reference
+  RELATIVE_TARGET_REFERENCE_NOMINAL = 1;
+  // Use minimal power/hashrate target as the reference
+  RELATIVE_TARGET_REFERENCE_MIN = 2;
+  // Use maximal power/hashrate target as the reference
+  RELATIVE_TARGET_REFERENCE_MAX = 3;
+  // Use current power/hashrate target as the reference
+  RELATIVE_TARGET_REFERENCE_CURRENT = 4;
+}
+
+// Request for setting power/hashrate target relative to a reference value
+message SetRelativeTargetRequest {
+  // Save action
+  braiins.bos.v1.SaveAction save_action = 1;
+  // Percentage value to set (e.g., 85.5 for 85.5%)
+  double percentage = 2;
+  // Reference point from which the percentage is calculated
+  RelativeTargetReference reference = 3;
+}
+
 // Request for set default hashrate target action.
 message SetDefaultHashrateTargetRequest {
   // Save action
@@ -422,6 +446,8 @@ service PerformanceService {
   rpc IncrementPowerTarget(IncrementPowerTargetRequest) returns (SetPowerTargetResponse);
   // Method to decrement power target for tuner
   rpc DecrementPowerTarget(DecrementPowerTargetRequest) returns (SetPowerTargetResponse);
+  // Method to set power target relative to a reference value
+  rpc SetRelativePowerTarget(SetRelativeTargetRequest) returns (SetPowerTargetResponse);
   // Method to set default hashrate target for tuner
   rpc SetDefaultHashrateTarget(SetDefaultHashrateTargetRequest) returns (SetHashrateTargetResponse);
   // Method to set absolute hashrate target for tuner
@@ -430,6 +456,8 @@ service PerformanceService {
   rpc IncrementHashrateTarget(IncrementHashrateTargetRequest) returns (SetHashrateTargetResponse);
   // Method to decrement hashrate target for tuner
   rpc DecrementHashrateTarget(DecrementHashrateTargetRequest) returns (SetHashrateTargetResponse);
+  // Method to set hashrate target relative to a reference value
+  rpc SetRelativeHashrateTarget(SetRelativeTargetRequest) returns (SetHashrateTargetResponse);
   // Method to set Dynamic Performance Scaling
   rpc SetDPS(SetDPSRequest) returns (SetDPSResponse);
   // Method to set performance mode
