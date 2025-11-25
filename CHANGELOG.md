@@ -1,5 +1,8 @@
 # Changelog
 
+### Added
+* Introduced new field `uid` in the `braiins.bos.v1.PoolGroup` message to get group uid.
+
 ## [1.7.0] - 2025-08-10
 Version **1.7.0** introduces changes to `braiins.bos.v1.PoolGroupConfiguration` and `braiins.bos.v1.PoolConfiguration`.
 

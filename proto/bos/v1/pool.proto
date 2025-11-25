@@ -87,6 +87,8 @@ message PoolGroup {
   }
   // Group pools
   repeated Pool pools = 4;
+  // Group id
+  string uid = 5;
 }
 
 // Structure handle information about configured pool
