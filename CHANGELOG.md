@@ -15,6 +15,9 @@
   * `UpdateAutoUpgradeConfigResponse` - response message containing enabled status and next execution timestamp
   * `GetAutoUpgradeStatusRequest` - request message to get AutoUpgrade status
   * `GetAutoUpgradeStatusResponse` - response message containing enabled status, schedule, next execution, and last execution timestamps
+* Introduced new enumeration `RelativeTargetReference` with `NOMINAL`, `MIN`, `MAX` and `CURRENT` variants.
+* Introduced new message `SetRelativeTargetRequest` with `save_action`, `percentage` and `reference` fields.
+* Introduced new methods `SetRelativePowerTarget` and `SetRelativeHashrateTarget`. User can now set power and hashrate targets relative to a reference value
 
 ## [1.7.0] - 2025-08-10
 Version **1.7.0** introduces changes to `braiins.bos.v1.PoolGroupConfiguration` and `braiins.bos.v1.PoolConfiguration`.
