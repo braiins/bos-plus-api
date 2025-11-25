@@ -7,6 +7,7 @@ This repository contains protocol buffers for the new Braiins OS Public API, whi
 
 | Public API Version | Braiins OS version |
 |--------------------|--------------------|
+| 1.8.0              | 25.11              |
 | 1.7.0              | 25.07              |
 | 1.6.0              | 25.05              |
 | 1.5.0              | 25.03              |
@@ -280,4 +281,4 @@ Contains **ApiVersionService** service with **GetApiVersion** to be able to read
 ### Contact
 Do you have questions or specific needs from the API? Our dev and support teams are always available to help. You can send a request to our support team or open a GitHub issue.
 
-You can also join our Telegram group at https://t.me/BraiinsOS point and customize it to fit your project's specific needs. 
+You can also join our Telegram group at https://t.me/BraiinsOS point and customize it to fit your project's specific needs.
