@@ -68,3 +68,23 @@ message BasesPoints {
 message Hours {
   uint32 hours = 1;
 }
+
+// Represents a day of the week.
+enum DayOfWeek {
+  // The day of the week is unspecified.
+  DAY_OF_WEEK_UNSPECIFIED = 0;
+  // Monday
+  DAY_OF_WEEK_MONDAY = 1;
+  // Tuesday
+  DAY_OF_WEEK_TUESDAY = 2;
+  // Wednesday
+  DAY_OF_WEEK_WEDNESDAY = 3;
+  // Thursday
+  DAY_OF_WEEK_THURSDAY = 4;
+  // Friday
+  DAY_OF_WEEK_FRIDAY = 5;
+  // Saturday
+  DAY_OF_WEEK_SATURDAY = 6;
+  // Sunday
+  DAY_OF_WEEK_SUNDAY = 7;
+}

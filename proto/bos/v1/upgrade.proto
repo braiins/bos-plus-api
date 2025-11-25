@@ -1,0 +1,88 @@
+// Copyright (C) 2025  Braiins Systems s.r.o.
+//
+// This file is part of Braiins Open-Source Initiative (BOSI).
+//
+// BOSI is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+// Please, keep in mind that we may also license BOSI or any part thereof
+// under a proprietary license. For more information on the terms and conditions
+// of such proprietary license or if you have any other questions, please
+// contact us at opensource@braiins.com.
+
+syntax = "proto3";
+
+package braiins.bos.v1;
+
+import "bos/v1/units.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
+
+message UpgradeTime {
+  // Hours of day in 24 hour format. Must be from 0 to 23.
+  uint32 hours = 1;
+  // Minutes of hour of day. Must be from 0 to 59.
+  uint32 minutes = 2;
+  // Seconds of minutes of the time. Can be from 0 to 59.
+  optional uint32 seconds = 3;
+}
+
+message DailySchedule {
+  optional UpgradeTime time = 1;
+}
+
+message WeeklySchedule {
+  optional DayOfWeek day_of_week = 1;
+  optional UpgradeTime time = 2;
+}
+
+message MonthlySchedule {
+  // Artificially limited to 1-28 to cover all months
+  optional uint32 day_of_month = 1;
+  optional UpgradeTime time = 2;
+}
+
+message AutoUpgradeSchedule {
+  oneof schedule_type {
+    DailySchedule daily = 1;
+    WeeklySchedule weekly = 2;
+    MonthlySchedule monthly = 3;
+  }
+}
+
+message UpdateAutoUpgradeConfigRequest {
+  bool enabled = 1;
+  optional AutoUpgradeSchedule schedule = 2;
+}
+
+message UpdateAutoUpgradeConfigResponse {
+  bool enabled = 1;
+  optional google.protobuf.Timestamp next_execution = 2;
+}
+
+message GetAutoUpgradeStatusRequest {}
+
+message GetAutoUpgradeStatusResponse {
+  bool enabled = 1;
+  optional AutoUpgradeSchedule schedule = 2;
+  optional google.protobuf.Timestamp next_execution = 3;
+  optional google.protobuf.Timestamp last_execution = 4;
+}
+
+service UpgradeService {
+  // Allows en/disabling of AutoUpgrade feature
+  rpc UpdateAutoUpgradeConfig(UpdateAutoUpgradeConfigRequest) returns (UpdateAutoUpgradeConfigResponse);
+  // Returns the current AutoUpgrade configuration and status
+  rpc GetAutoUpgradeStatus(GetAutoUpgradeStatusRequest) returns (GetAutoUpgradeStatusResponse);
+}
