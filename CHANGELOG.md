@@ -2,6 +2,19 @@
 
 ### Added
 * Introduced new field `uid` in the `braiins.bos.v1.PoolGroup` message to get group uid.
+* Introduced new service `braiins.bos.v1.UpgradeService` with methods:
+  * `UpdateAutoUpgradeConfig` - enables/disables AutoUpgrade feature and configures upgrade schedule
+  * `GetAutoUpgradeStatus` - retrieves current AutoUpgrade configuration and execution status
+* Introduced new messages for AutoUpgrade scheduling:
+  * `units.DayOfWeek` enum and custom `upgrade.UpgradeTime` message for schedule configuration
+  * `DailySchedule` - schedule upgrades to run daily at a specific time
+  * `WeeklySchedule` - schedule upgrades to run weekly on a specific day of the week at a specific time
+  * `MonthlySchedule` - schedule upgrades to run monthly on a specific day of the month (1-28) at a specific time
+  * `AutoUpgradeSchedule` - oneof message that can contain any of the schedule types
+  * `UpdateAutoUpgradeConfigRequest` - request message to update AutoUpgrade configuration
+  * `UpdateAutoUpgradeConfigResponse` - response message containing enabled status and next execution timestamp
+  * `GetAutoUpgradeStatusRequest` - request message to get AutoUpgrade status
+  * `GetAutoUpgradeStatusResponse` - response message containing enabled status, schedule, next execution, and last execution timestamps
 
 ## [1.7.0] - 2025-08-10
 Version **1.7.0** introduces changes to `braiins.bos.v1.PoolGroupConfiguration` and `braiins.bos.v1.PoolConfiguration`.
