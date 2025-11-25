@@ -7,6 +7,7 @@ This repository contains protocol buffers for the new Braiins OS Public API, whi
 
 | Public API Version | Braiins OS version |
 |--------------------|--------------------|
+| 1.8.0              | 25.11              |
 | 1.7.0              | 25.07              |
 | 1.6.0              | 25.05              |
 | 1.5.0              | 25.03              |
@@ -91,6 +92,7 @@ braiins.bos.v1.CoolingService
 braiins.bos.v1.MinerService
 braiins.bos.v1.PoolService
 braiins.bos.v1.TunerService
+braiins.bos.v1.UpgradeService
 grpc.reflection.v1alpha.ServerReflection
 ```
 
@@ -268,10 +270,35 @@ Contains pools related messages and **PoolService** with various methods to read
 #### 12. proto/bos/v1/units.proto
 Contains protobuf messages representing various units like Voltage, Frequency, etc.
 
-#### 13. proto/bos/v1/work.proto
+#### 13. proto/bos/v1/upgrade.proto
+Contains upgrade related messages and **UpgradeService** with methods to configure and monitor automatic firmware upgrades:
+* **UpdateAutoUpgradeConfig** - method to enable/disable AutoUpgrade feature and configure upgrade schedule,
+* **GetAutoUpgradeStatus** - method to retrieve current AutoUpgrade configuration and execution status.
+
+The AutoUpgrade feature allows the miner to automatically upgrade its firmware according to a configured schedule. You can schedule upgrades to run:
+* **Daily** - at a specific time each day
+* **Weekly** - on a specific day of the week at a specific time
+* **Monthly** - on a specific day of the month (1-28) at a specific time
+
+**Notes:**
+* The `dayOfWeek` field uses the `units.DayOfWeek` enum with value for each day in a week.
+* The `time` field uses the `UpgradeTime` message with fields:
+  * `hours` - hour of day in 24-hour format (0-23)
+  * `minutes` - minutes of hour (0-59)
+  * `seconds` - seconds of minute (0-59, optional, defaults to 0)
+* For monthly schedules, `dayOfMonth` is limited to values 1-28 to ensure compatibility across all months
+* When updating the configuration, both `enabled` and `schedule` fields are optional - you can update just one or both
+* The `lastExecution` timestamp indicates when the last automatic upgrade was performed (if any)
+* The `nextExecution` timestamp indicates when the next automatic upgrade will occur
+* **Important**: When schedule attributes are not supplied, they will be randomized:
+  * For `DailySchedule`: if `time` (hours/minutes) is not set, a random time of day will be generated
+  * For `WeeklySchedule`: if `dayOfWeek` is not set, a random day of the week will be generated; if `time` is not set, a random time of day will be generated
+  * For `MonthlySchedule`: if `dayOfMonth` is not set, a random day (1-28) will be generated; if `time` is not set, a random time of day will be generated
+
+#### 14. proto/bos/v1/work.proto
 Contains mining work related protobuf messages.
 
-#### 14. proto/bos/version.proto
+#### 15. proto/bos/version.proto
 Contains **ApiVersionService** service with **GetApiVersion** to be able to read current Public API version available for communication with miner
 
 
@@ -280,4 +307,4 @@ Contains **ApiVersionService** service with **GetApiVersion** to be able to read
 ### Contact
 Do you have questions or specific needs from the API? Our dev and support teams are always available to help. You can send a request to our support team or open a GitHub issue.
 
-You can also join our Telegram group at https://t.me/BraiinsOS point and customize it to fit your project's specific needs. 
+You can also join our Telegram group at https://t.me/BraiinsOS point and customize it to fit your project's specific needs.
