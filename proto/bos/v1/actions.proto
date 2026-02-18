@@ -59,6 +59,12 @@ message StopResponse {
   bool already_stopped = 1;
 }
 
+// Request for factory reset action
+message FactoryResetRequest {}
+
+// Response for factory reset action
+message FactoryResetResponse {}
+
 // Request for pause mining action.
 message PauseMiningRequest {}
 
@@ -108,6 +114,9 @@ service ActionsService {
 
   // Method to reboot whole miner
   rpc Reboot(RebootRequest) returns (RebootResponse);
+
+  // Method to factory reset
+  rpc FactoryReset(FactoryResetRequest) returns (FactoryResetResponse);
 
   // Method to enable/disable locate device mode
   rpc SetLocateDeviceStatus(SetLocateDeviceStatusRequest) returns (LocateDeviceStatusResponse);

@@ -3,6 +3,7 @@
 ## [1.9.0] - yyyy-mm-dd
 ### Added
 * Added `on_start_target_percent` field in the `braiins.bos.v1.DPSConfiguration`, `braiins.bos.v1.DPSConstraints`, `braiins.bos.v1.SetDPSRequest`, `braiins.bos.v1.SetDPSResponse`. This change allows to specify the target that the Dynamic Performance Scaling starts from.
+* Introduced new `braiins.bos.v1.ActionsService::FactoryReset()` method to perform factory reset.
 
 ## [1.8.0] - 2025-11-25
 Version **1.8.0** introduces new Upgrade service `braiins.bos.v1.UpgradeService` and relative power/hashrate target configuration.

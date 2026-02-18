@@ -117,6 +117,8 @@ service ActionsService {
   rpc Start ( .braiins.bos.v1.StartRequest ) returns ( .braiins.bos.v1.StartResponse );
   // Method to stop bosminer
   rpc Stop ( .braiins.bos.v1.StopRequest ) returns ( .braiins.bos.v1.StopResponse );
+  // Method to perform factory reset
+  rpc FactoryReset ( .braiins.bos.v1.FactoryResetRequest ) returns ( .braiins.bos.v1.FactoryResetResponse )
 }
 braiins.bos.v1.AuthenticationService is a service:
 service AuthenticationService {
@@ -195,6 +197,7 @@ Contains miner actions related protobuf messages and **ActionsService** with var
 * **ResumeMining** - method to resume mining,
 * **Restart** - method to restart mining,
 * **Reboot** - method to reboot whole miner,
+* **FactoryReset** - method to perform factory reset,
 * **SetLocateDeviceStatus** - method to enable/disable locate device mode,
 * **GetLocateDeviceStatus** - method to retrieve the locate device mode status.
 
