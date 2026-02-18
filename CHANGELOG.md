@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.9.0] - yyyy-mm-dd
+## [1.9.0] - 2026-02-18
 ### Added
 * Added `on_start_target_percent` field in the `braiins.bos.v1.DPSConfiguration`, `braiins.bos.v1.DPSConstraints`, `braiins.bos.v1.SetDPSRequest`, `braiins.bos.v1.SetDPSResponse`. This change allows to specify the target that the Dynamic Performance Scaling starts from.
 * Introduced new `braiins.bos.v1.ActionsService::FactoryReset()` method to perform factory reset.
