@@ -33,7 +33,7 @@ option go_package = "github.com/braiins/bos-plus-api/braiins/bos;bos_proto";
 // proto3 extensions and proto3 does not allow specifying custom
 // default values. Value follows semver format.
 
-// LATEST_API_VERSION=1.8.0
+// LATEST_API_VERSION=1.9.0
 message ApiVersion {
   uint64 major = 1;
   uint64 minor = 2;
