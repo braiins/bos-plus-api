@@ -9,6 +9,9 @@
 * Introduced new field `default_fan_pause_runtime` in the `braiins.bos.v1.CoolingConstraints` message to get default fan pause runtime.
 * Introduced new field `fan_pause_runtime_limited_duration_s` in the `braiins.bos.v1.CoolingConstraints` message to get fan pause runtime limited duration.
 
+### Changed
+* Extended `braiins.bos.v1.TunerState` enumeration with `TUNER_STATE_CONTINUOUS` variant,
+
 ## [1.8.0] - 2025-11-25
 Version **1.8.0** introduces new Upgrade service `braiins.bos.v1.UpgradeService` and relative power/hashrate target configuration.
 
