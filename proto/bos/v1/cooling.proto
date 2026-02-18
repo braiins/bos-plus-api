@@ -41,7 +41,8 @@ message PauseMode {
 // Automatic pause mode starts with fans going with last fan speed used for mining and slowly decreases speed down to 0%
 message AutoPauseMode {}
 
-// Manual pause mode runs with defined fixed fans speed for 2 minutes, then turns off
+// Manual pause mode runs with defined fixed fans speed and either turns off after a certain period of time
+// or runs indefinitely according to fan_runtime settings
 message ManualPauseMode {
   // User defined pause cooldown fan speed expressed as a ratio between 0.0 and 1.0
   // where 0.0 means completely turned off and
@@ -49,6 +50,10 @@ message ManualPauseMode {
   // Value is not optional for request! Unset value will result in error.
   // Value is optional for response! It is possible to set manual pause mode without pause cooldown fan speed, but not using the API.
   optional double pause_cooldown_fan_speed_ratio = 1;
+  // Controls how long fans run at the fixed speed before turning off.<br>
+  // 1 = FAN_PAUSE_RUNTIME_LIMITED - fans run for a limited duration (see `fan_pause_runtime_limited_duration_s` in `CoolingConstraints`) then turn off<br>
+  // 2 = FAN_PAUSE_RUNTIME_INDEFINITE - fans run indefinitely at the fixed speed until miner is resumed
+  optional FanPauseRuntime fan_pause_runtime = 2;
 }
 
 // The temperature control modes.
@@ -138,6 +143,12 @@ enum FanPauseMode {
   FAN_PAUSE_MODE_MANUAL = 2;
 }
 
+enum FanPauseRuntime {
+  FAN_PAUSE_RUNTIME_UNSPECIFIED = 0;
+  FAN_PAUSE_RUNTIME_LIMITED = 1;
+  FAN_PAUSE_RUNTIME_INDEFINITE = 2;
+}
+
 message CoolingConstraints {
   CoolingMode default_cooling_mode = 1;
   braiins.bos.v1.TemperatureConstraints target_temperature = 2;
@@ -149,6 +160,8 @@ message CoolingConstraints {
   braiins.bos.v1.UInt32Constraints max_fan_speed = 8;
   braiins.bos.v1.DoubleConstraints pause_cooldown_fan_speed_ratio = 9;
   optional FanPauseMode default_fan_pause_mode = 10;
+  optional FanPauseRuntime default_fan_pause_runtime = 11;
+  optional uint32 fan_pause_runtime_limited_duration_s = 12;
 }
 
 // Structure which contain info about one specific miner fan.
