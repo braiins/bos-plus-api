@@ -47,8 +47,6 @@ message ManualPauseMode {
   // User defined pause cooldown fan speed expressed as a ratio between 0.0 and 1.0
   // where 0.0 means completely turned off and
   // 1.0 means running at full speed possible
-  // Value is not optional for request! Unset value will result in error.
-  // Value is optional for response! It is possible to set manual pause mode without pause cooldown fan speed, but not using the API.
   optional double pause_cooldown_fan_speed_ratio = 1;
   // Controls how long fans run at the fixed speed before turning off.<br>
   // 1 = FAN_PAUSE_RUNTIME_LIMITED - fans run for a limited duration (see `fan_pause_runtime_limited_duration_s` in `CoolingConstraints`) then turn off<br>
