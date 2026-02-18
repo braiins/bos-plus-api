@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.9.0] - yyyy-mm-dd
+### Added
+* Added `on_start_target_percent` field in the `braiins.bos.v1.DPSConfiguration`, `braiins.bos.v1.DPSConstraints`, `braiins.bos.v1.SetDPSRequest`, `braiins.bos.v1.SetDPSResponse`. This change allows to specify the target that the Dynamic Performance Scaling starts from.
+
 ## [1.8.0] - 2025-11-25
 Version **1.8.0** introduces new Upgrade service `braiins.bos.v1.UpgradeService` and relative power/hashrate target configuration.
 
@@ -84,19 +88,19 @@ Version **1.4.0** introduces possibility to set DPS mode to `normal` or `boost`.
 Version **1.3.0** introduces few small improvements.
 
 ### Changed
-* Extended `braiins.bos.v1.Platform` enumeration with `PLATFORM_STM32MP157C_II2_BMM1` variant,
-* Extended `braiins.bos.v1.SupportArchiveFormat` enumeration with `SUPPORT_ARCHIVE_FORMAT_ZIP_ENCRYPTED` variant.
+* Extended `braiins.bos.v1.SupportArchiveFormat` enumeration with `SUPPORT_ARCHIVE_FORMAT_ZIP_ENCRYPTED` variant,
+* Extended `braiins.bos.v1.Platform` enumeration with `PLATFORM_STM32MP157C_II2_BMM1` variant.
 
 ## [1.2.0] - 2024-07-17
 Version **1.2.0** introduces the possibility to configure all pool groups at once and read Braiins OS errors.
 
 ### Added
-* Introduced new field `model` in the `braiins.bos.v1.Hashboard` message that contains hashboard name,
+* Introduced new method `SetPoolGroups` in the `braiins.bos.v1.PoolService` to set all Pool groups at once,
 * Introduced new method `GetErrors` in the `braiins.bos.v1.MinerService` to get all miner errors,
-* Introduced new method `SetPoolGroups` in the `braiins.bos.v1.PoolService` to set all Pool groups at once.
+* Introduced new field `model` in the `braiins.bos.v1.Hashboard` message that contains hashboard name.
 
 ## [1.1.0] - 2024-05-09
-Version **1.1.0** introduce possibility to read network configuration, changes in authentication and few more changes. 
+Version **1.1.0** introduce possibility to read network configuration, changes in authentication and few more changes.
 
 ### Added
 * Introduced new field `last_share_time` in the `braiins.bos.v1.PoolStats` that provides info about last share time,
@@ -109,10 +113,10 @@ Version **1.1.0** introduce possibility to read network configuration, changes i
 The first stable release of the Public API incorporates minor enhancements.
 
 ### Added
-* Introduced new field `enabled` in the `braiins.bos.v1.DPSConfiguration` that provides info, if DPS is enabled by default or not.
-* Introduced new field `enabled` in the `braiins.bos.v1.TunerConstraints` that provides info, if DPS is enabled by default or not.
-* Introduced new field `default_mode` in the `braiins.bos.v1.TunerConstraints` that provides info about the default tuner mode.
-* Introduced new field `status` in the `braiins.bos.v1.GetMinerDetailsResponse` that provides info about the current miner status.
+* Introduced new field `enabled` in the `braiins.bos.v1.DPSConfiguration` that provide info, if DPS is enabled by default or not.
+* Introduced new field `enabled` in the `braiins.bos.v1.TunerConstraints` that provide info, if DPS is enabled by default or not.
+* Introduced new field `default_mode` in the `braiins.bos.v1.TunerConstraints` that provide info about default tuner mode.
+* Introduced new field `status` in the `braiins.bos.v1.GetMinerDetailsResponse` that provide info about current miner status.
 
 ## [1.0.0-beta.6] - 2024-03-05
 Version **1.0.0-beta.6** contains one new feature Network configuration.
@@ -127,24 +131,25 @@ Version **1.0.0-beta.5** contains one small extension.
 * Extension of the `braiins.bos.v1.Platform` enumeration with new value for Zynq.
 
 ## [1.0.0-beta.4] - 2023-11-23
-Version **1.0.0-beta.4** contains one new feature and one breaking change.
+Version 1.0.0-beta.4 contains one new feature and one breaking change.
 
 ### Added
+* Introduced new field `system_uptime_s` in the `braiins.bos.v1.GetMinerDetailsResponse` that replace `system_uptime`(marked as deprecated) to keep best practise that field name should describe also unit.
 * We added option to clean tuner profiles by adding `braiins.bos.v1.PerformanceService::RemoveTunedProfiles`
-* Introduced a new field `system_uptime_s` in the `braiins.bos.v1.GetMinerDetailsResponse` that replaces `system_uptime`(marked as deprecated) to keep the best practice that a field name should also describe the unit (when applicable).
 
 ### Breaking Changes:
-* We reverted removing `braiins.bos.v1.MinerModel` enumeration from the previous release because this change was causing troubles to our users.
+* We reverted removing `braiins.bos.v1.MinerModel` enumeration from previous release because this change cause troubles to our users. 
   Instead of dropping enumeration, we decided to mark it as deprecated and introduce new field `miner_model` for string representation.
 
-## [1.0.0-beta.3] - 2023-11-02
-Version **1.0.0-beta.3** contains a few minor improvements.
+## [1.0.0-beta.3] - 2023-10-30
+Version 1.0.0-beta.3 contains a few minor improvements.
 
 ### Added
-* Extension of the `braiins.bos.v1.GetMinerDetailsResponse` message with `bosminer_uptime_s` field that contains bosminer uptime.
+* Extension of the `braiins.bos.v1.GetMinerDetailsResponse` message with `bosminer_uptime_s` field that contains bosminer uptime,
 
 ### Breaking Changes:
-* We removed `braiins.bos.v1.MinerModel` enumeration and changed type of `model` field in `braiins.bos.v1.MinerIdentity` to `string`. Replacing model enumeration with string eliminates the need to release a new version every time we add support for new model,
+* We removed `braiins.bos.v1.MinerModel` enumeration and changed type of `model` field in `braiins.bos.v1.MinerIdentity` to `string`. Replacing model enumeration with string eliminates the need to release a new version every time we add support for new model.
+---
 
 ## [1.0.0-beta.2] - 2023-08-10
 Version **1.0.0-beta.2** extends performance management and Pool Group management possibilities. It also introduces an API to get Mining Status.
@@ -159,7 +164,7 @@ Formerly, users could only configure power target values. Now, we made it possib
 This release adds the possibility to configure Dynamic Performance Scaling parameters. Users now can fully optimize their operations to their unique requirements using Public API.
 
 ##### Augmented Hashboard Administration
-We have extended the hashboards management. Public API now lets users activate or deactivate individual hashboards.
+We have extended the hashboards management. Public API now lets users to activate or deactivate the individual hashboards.
 
 #### Evolved Pool Group Management
 Previously only single pool group modifications were possible. We have reworked the Public API to allow addition of new pool groups and removal of existing ones.
@@ -206,8 +211,8 @@ An entirely new API makes its debut, providing concise insights into the mining 
 
 ### Migration Guide:
 In order to transition to version **1.0.0-beta.2**, the integration requires implementation of the subsequent adjustments:
-* Ensure incorporation of the updated moniker `PerformanceService`. The same applies to usage of the `SetAbsolutePowerTarget` method.
-* Verify the seamless functionality of your modification request with the modified index placements within the `save_action` fields.
+* Ensure incorporation of the updated moniker `PerformanceService`. The same applies to usage of the `SetAbsolutePowerTarget` method. 
+* Verify the seamless functionality of your modification request with the modified index placements within the `save_action` fields. 
 * Guarantee accurate parsing of the novel string-based hashboard identifiers.
 
 ---
@@ -235,7 +240,7 @@ A new API has emerged, facilitating streamlined access to a comprehensive suppor
 ---
 
 ## [1.0.0-beta] - 2023-05-11
-The latest release, version 1.0.0-beta, introduces a significant addition: the all-new Braiins OS License feature.
+The latest release, version 1.0.0-beta, introduces a significant addition: the all-new BOS+ License feature.
 
 ### Added
 * Introduction of a new `braiins.bos.v1.LicenseService::GetLicenseState()` streaming method to fetch BOS Licence state.
@@ -265,10 +270,10 @@ We introduce a new API that provides simple way how to download a support archiv
 ---
 
 ## [1.0.0-alpha] - 2023-05-25
-The first release for the new Braiins OS Public API, which introduces the first batch of features.
+The first release for the new Braiins OS+ Public API, which introduces the first batch of features.
 
 ##### Actions
-With actions from `ActionService`, user can start/stop/restart/pause/resume mining. Reboot of the whole miner is supported as well.
+With actions from `ActionService`, user can start/stop/restart/pause/resume mining (BOS+). Reboot of the whole miner is supported as well.
 
 ##### Configuration
 With `ConfigurationService` methods, user can read current miner configuration and configuration constraints.
@@ -288,4 +293,4 @@ With `TunerService` methods, user can read current tuner state and configure tun
 ##### Other
 Overall to use gRPC API, user must be authenticated. For this purpose, `AuthenticationService` with `Login` method is present.
 
-The method in `VersionService` provides information about a particular version of the public Braiins OS API.
+The method in `VersionService` provides information about a particular version of the public Braiins OS+ API.
