@@ -4,6 +4,10 @@
 ### Added
 * Added `on_start_target_percent` field in the `braiins.bos.v1.DPSConfiguration`, `braiins.bos.v1.DPSConstraints`, `braiins.bos.v1.SetDPSRequest`, `braiins.bos.v1.SetDPSResponse`. This change allows to specify the target that the Dynamic Performance Scaling starts from.
 * Introduced new `braiins.bos.v1.ActionsService::FactoryReset()` method to perform factory reset.
+* Introduced new enumeration `braiins.bos.v1.FanPauseRuntime` with `FAN_PAUSE_RUNTIME_LIMITED` and `FAN_PAUSE_RUNTIME_INDEFINITE` variants.
+* Introduced new field `fan_pause_runtime` in the `braiins.bos.v1.ManualPauseMode` message to configure fan runtime duration in manual pause mode.
+* Introduced new field `default_fan_pause_runtime` in the `braiins.bos.v1.CoolingConstraints` message to get default fan pause runtime.
+* Introduced new field `fan_pause_runtime_limited_duration_s` in the `braiins.bos.v1.CoolingConstraints` message to get fan pause runtime limited duration.
 
 ## [1.8.0] - 2025-11-25
 Version **1.8.0** introduces new Upgrade service `braiins.bos.v1.UpgradeService` and relative power/hashrate target configuration.
