@@ -163,6 +163,7 @@ enum TunerState {
   TUNER_STATE_STABLE = 2;
   TUNER_STATE_TUNING = 3;
   TUNER_STATE_ERROR = 4;
+  TUNER_STATE_CONTINUOUS = 5;
 }
 
 // Request for getting the current performance data
