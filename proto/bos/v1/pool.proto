@@ -31,7 +31,7 @@ option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1
 
 // Structure for quota load balance strategy
 message Quota {
-  uint32 value = 1;
+  uint64 value = 1;
 }
 
 // Structure for fixed share ratio load balance strategy
