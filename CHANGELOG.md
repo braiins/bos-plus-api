@@ -6,6 +6,8 @@
 * Introduced new field `best_share_str` in `braiins.bos.v1.WorkSolverStats` and `braiins.bos.v1.PoolStats` messages to provide best share value as a decimal string, supporting values larger than 2^64-1.
 * Introduced new method `SystemUpgrade` in the `braiins.bos.v1.UpgradeService`. User can now send firmware and do system upgrade.
 * Introduced new method `RestoreStock` in the `braiins.bos.v1.UpgradeService`. User can restore stock firmware.
+* Introduced new `braiins.bos.v1.LogType` enumeration with log type variants for downloading miner logs.
+* Introduced new streaming method `braiins.bos.v1.MinerService::GetLog()` to download merged miner log files.
 
 ### Changed
 * Deprecated field `best_share` in `braiins.bos.v1.WorkSolverStats` and `braiins.bos.v1.PoolStats` messages. Use `best_share_str` instead to avoid overflow for values exceeding 2^64-1.
@@ -18,8 +20,6 @@
 * Introduced new field `fan_pause_runtime` in the `braiins.bos.v1.ManualPauseMode` message to configure fan runtime duration in manual pause mode.
 * Introduced new field `default_fan_pause_runtime` in the `braiins.bos.v1.CoolingConstraints` message to get default fan pause runtime.
 * Introduced new field `fan_pause_runtime_limited_duration_s` in the `braiins.bos.v1.CoolingConstraints` message to get fan pause runtime limited duration.
-* Introduced new `braiins.bos.v1.LogType` enumeration with log type variants for downloading miner logs.
-* Introduced new streaming method `braiins.bos.v1.MinerService::GetLog()` to download merged miner log files.
 
 ### Changed
 * Extended `braiins.bos.v1.TunerState` enumeration with `TUNER_STATE_CONTINUOUS` variant,
