@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.10.0] - yyyy-mm-dd
+## [1.10.0] - 2026-04-15
 
 ### Added
 * Introduced new field `best_share_str` in `braiins.bos.v1.WorkSolverStats` and `braiins.bos.v1.PoolStats` messages to provide best share value as a decimal string, supporting values larger than 2^64-1.
