@@ -52,6 +52,8 @@ message WorkSolverStats {
   braiins.bos.v1.MegaHashrate error_hashrate = 3;
   // Found blocks
   uint32 found_blocks = 4;
-  // Best share
-  uint64 best_share = 5;
+  // Best share (deprecated: may overflow for values > 2^64-1, use best_share_str instead)
+  uint64 best_share = 5 [deprecated = true];
+  // Best share as decimal string
+  string best_share_str = 6;
 }

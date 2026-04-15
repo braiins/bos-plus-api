@@ -2,6 +2,12 @@
 
 ## [1.10.0] - yyyy-mm-dd
 
+### Added
+* Introduced new field `best_share_str` in `braiins.bos.v1.WorkSolverStats` and `braiins.bos.v1.PoolStats` messages to provide best share value as a decimal string, supporting values larger than 2^64-1.
+
+### Changed
+* Deprecated field `best_share` in `braiins.bos.v1.WorkSolverStats` and `braiins.bos.v1.PoolStats` messages. Use `best_share_str` instead to avoid overflow for values exceeding 2^64-1.
+
 ## [1.9.0] - 2026-02-18
 ### Added
 * Added `on_start_target_percent` field in the `braiins.bos.v1.DPSConfiguration`, `braiins.bos.v1.DPSConstraints`, `braiins.bos.v1.SetDPSRequest`, `braiins.bos.v1.SetDPSResponse`. This change allows to specify the target that the Dynamic Performance Scaling starts from.
