@@ -275,9 +275,10 @@ Contains pools related messages and **PoolService** with various methods to read
 Contains protobuf messages representing various units like Voltage, Frequency, etc.
 
 #### 13. proto/bos/v1/upgrade.proto
-Contains upgrade related messages and **UpgradeService** with methods to configure and monitor automatic firmware upgrades:
+Contains upgrade related messages and **UpgradeService** with methods to configure and monitor automatic firmware upgrades, to perform manual firmware upgrade:
 * **UpdateAutoUpgradeConfig** - method to enable/disable AutoUpgrade feature and configure upgrade schedule,
-* **GetAutoUpgradeStatus** - method to retrieve current AutoUpgrade configuration and execution status.
+* **GetAutoUpgradeStatus** - method to retrieve current AutoUpgrade configuration and execution status,
+* **SystemUpgrade** - method to perform manual upgrade.
 
 The AutoUpgrade feature allows the miner to automatically upgrade its firmware according to a configured schedule. You can schedule upgrades to run:
 * **Daily** - at a specific time each day
