@@ -238,6 +238,7 @@ Contains miner related messages and **MinerService** with various methods to rea
 * **GetErrors** - method to get all miner errors,
 * **GetHashboards** - method to read miner hashboards state and statistics,
 * **GetSupportArchive** - method to download Braiins OS support archive,
+* **GetLog** - method to download merged miner log file,
 * **EnableHashboards** - method to enable hashboards,
 * **DisableHashboards** - method to disable hashboards.
 

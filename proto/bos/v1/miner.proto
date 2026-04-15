@@ -268,6 +268,23 @@ enum SupportArchiveFormat {
   SUPPORT_ARCHIVE_FORMAT_ZIP_ENCRYPTED = 3;
 }
 
+// Supported log types for download
+enum LogType {
+  LOG_TYPE_UNSPECIFIED = 0;
+  // Bosminer error logs
+  LOG_TYPE_ERRORS = 1;
+  // Bosminer logs
+  LOG_TYPE_BOSMINER = 2;
+  // Boser logs
+  LOG_TYPE_BOSER = 3;
+  // Monitor logs
+  LOG_TYPE_MONITOR = 4;
+  // System logs
+  LOG_TYPE_SYSLOG = 5;
+  // Kernel ring buffer (dmesg)
+  LOG_TYPE_DMESG = 6;
+}
+
 message GetSupportArchiveRequest {
   // Support archive format.
   SupportArchiveFormat format = 1;
@@ -275,6 +292,16 @@ message GetSupportArchiveRequest {
 
 message GetSupportArchiveResponse {
   // Support archive data
+  bytes chunk_data = 1;
+}
+
+message GetLogRequest {
+  // Type of log to download
+  LogType log_type = 1;
+}
+
+message GetLogResponse {
+  // Log data chunk
   bytes chunk_data = 1;
 }
 
@@ -330,6 +357,9 @@ service MinerService {
   // Method to download BOS support archive
   // Method returns stream of messages with binary chunks that needs to be concatenated on the caller side
   rpc GetSupportArchive(GetSupportArchiveRequest) returns (stream GetSupportArchiveResponse);
+  // Method to download miner log file
+  // Method returns stream of messages with binary chunks that needs to be concatenated on the caller side
+  rpc GetLog(GetLogRequest) returns (stream GetLogResponse);
   // Method to enable hashboards
   rpc EnableHashboards(EnableHashboardsRequest) returns (EnableHashboardsResponse);
   // Method to disable hashboards
