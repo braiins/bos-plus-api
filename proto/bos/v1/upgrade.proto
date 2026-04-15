@@ -107,6 +107,13 @@ message SystemUpgradeResponse {
   bool successful = 1;
 }
 
+message RestoreStockRequest {}
+
+message RestoreStockResponse {
+  // Flag if restore of stock was successfully started
+  bool successful = 1;
+}
+
 service UpgradeService {
   // Allows en/disabling of AutoUpgrade feature
   rpc UpdateAutoUpgradeConfig(UpdateAutoUpgradeConfigRequest) returns (UpdateAutoUpgradeConfigResponse);
@@ -114,4 +121,6 @@ service UpgradeService {
   rpc GetAutoUpgradeStatus(GetAutoUpgradeStatusRequest) returns (GetAutoUpgradeStatusResponse);
   // Method to upgrade miner
   rpc SystemUpgrade(stream SystemUpgradeRequest) returns (SystemUpgradeResponse);
+  // Method to restore stock firmware
+  rpc RestoreStock(RestoreStockRequest) returns (RestoreStockResponse);
 }
