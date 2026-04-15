@@ -80,9 +80,38 @@ message GetAutoUpgradeStatusResponse {
   optional google.protobuf.Timestamp last_execution = 4;
 }
 
+message SystemUpgradeMetadata {
+  // Firmware size (bytes)
+  uint64 size = 1;
+  // Firmware hash (SHA256 hex encoded)
+  string hash = 2;
+  // Flag if should discard settings (default is false and keep settings)
+  bool discard_settings = 3;
+  // Flag if should disable cleanup of directory, in which uploaded firmware is stored (default is false and do cleanup)
+  bool disable_cleanup = 4;
+}
+
+message SystemUpgradeRequest {
+  // First message of the stream has to be `metadata`
+  // Additional messages of the stream have to be `data`
+  oneof payload {
+    // System upgrade metadata
+    SystemUpgradeMetadata metadata = 1;
+    // Firmware
+    bytes data = 2;
+  }
+}
+
+message SystemUpgradeResponse {
+  // Flag if system upgrade was successfully started
+  bool successful = 1;
+}
+
 service UpgradeService {
   // Allows en/disabling of AutoUpgrade feature
   rpc UpdateAutoUpgradeConfig(UpdateAutoUpgradeConfigRequest) returns (UpdateAutoUpgradeConfigResponse);
   // Returns the current AutoUpgrade configuration and status
   rpc GetAutoUpgradeStatus(GetAutoUpgradeStatusRequest) returns (GetAutoUpgradeStatusResponse);
+  // Method to upgrade miner
+  rpc SystemUpgrade(stream SystemUpgradeRequest) returns (SystemUpgradeResponse);
 }

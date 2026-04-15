@@ -4,6 +4,7 @@
 
 ### Added
 * Introduced new field `best_share_str` in `braiins.bos.v1.WorkSolverStats` and `braiins.bos.v1.PoolStats` messages to provide best share value as a decimal string, supporting values larger than 2^64-1.
+* Introduced new method `SystemUpgrade` in the `braiins.bos.v1.UpgradeService`. User can now send firmware and do system upgrade.
 
 ### Changed
 * Deprecated field `best_share` in `braiins.bos.v1.WorkSolverStats` and `braiins.bos.v1.PoolStats` messages. Use `best_share_str` instead to avoid overflow for values exceeding 2^64-1.
