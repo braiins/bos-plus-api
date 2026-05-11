@@ -1,0 +1,104 @@
+// Copyright (C) 2026  Braiins Systems s.r.o.
+//
+// This file is part of Braiins Open-Source Initiative (BOSI).
+//
+// BOSI is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+// Please, keep in mind that we may also license BOSI or any part thereof
+// under a proprietary license. For more information on the terms and conditions
+// of such proprietary license or if you have any other questions, please
+// contact us at opensource@braiins.com.
+
+syntax = "proto3";
+
+package braiins.bos.v1;
+
+import "google/protobuf/struct.proto";
+
+option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
+
+// Request to get JSON schema for all available settings
+message GetSettingsSchemaRequest {}
+
+// Response containing a JSON Schema defining all available settings
+message GetSettingsSchemaResponse {
+  google.protobuf.Struct schema = 1;
+}
+
+// Request to get settings
+message GetSettingsRequest {
+  // If true, all supported settings are returned, including those that still
+  // hold their default value.
+  // If false (default), only user-configured settings are returned.
+  optional bool include_default = 1;
+}
+
+// Response containing settings as key-value pairs.
+// When include_default is false, only user-configured settings are returned.
+// When include_default is true, all settings are returned with their effective values.
+// {
+//   "settings": {
+//     "allow_disabling_hashboards_on_nopic_miners": true,
+//     "min_fan_pwm": 25,
+//     "rambo_mode": "cautious"
+//   }
+// }
+message GetSettingsResponse {
+  google.protobuf.Struct settings = 1;
+}
+
+// Request to set one or more settings.
+// Only settings present in the map are modified; keys not included in the
+// request are left untouched and retain their current values.
+// Use null to clear a setting and revert it to its default value.
+message SetSettingsRequest {
+  google.protobuf.Struct settings = 1;
+}
+
+// Response for setting advanced settings.
+// The update is atomic: either all requested settings are applied, or none
+// are. If any setting fails validation or cannot be applied, the whole
+// request is rejected via a standard gRPC error status (e.g.,
+// INVALID_ARGUMENT) and no settings are changed.
+// On success, `applied` echoes back all settings from the request with their
+// new values. Settings that were cleared (reverted to default) are returned
+// with a null value.
+message SetSettingsResponse {
+  google.protobuf.Struct applied = 1;
+}
+
+// Request to reset all settings to their default values
+message ResetAllSettingsRequest {}
+
+// Response after resetting all settings to default.
+// Contains the effective values of all supported settings after the reset
+// (equivalent to calling GetSettings with include_default=true).
+message ResetAllSettingsResponse {
+  google.protobuf.Struct settings = 1;
+}
+
+service AdvancedSettingsService {
+  // Returns a JSON Schema defining all available settings with their types, constraints, and metadata
+  rpc GetSettingsSchema(GetSettingsSchemaRequest) returns (GetSettingsSchemaResponse);
+
+  // Returns settings with their current values
+  rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse);
+
+  // Sets one or more setting values
+  // Use null value to clear a setting and revert to default
+  rpc SetSettings(SetSettingsRequest) returns (SetSettingsResponse);
+
+  // Resets all settings to their default values
+  rpc ResetAllSettings(ResetAllSettingsRequest) returns (ResetAllSettingsResponse);
+}

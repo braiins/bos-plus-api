@@ -88,6 +88,7 @@ List available services
 $ grpcurl -plaintext miner:50051 list
 braiins.bos.ApiVersionService
 braiins.bos.v1.ActionsService
+braiins.bos.v1.AdvancedSettingsService
 braiins.bos.v1.AuthenticationService
 braiins.bos.v1.ConfigurationService
 braiins.bos.v1.CoolingService
@@ -309,6 +310,13 @@ Contains mining work related protobuf messages.
 
 #### 15. proto/bos/version.proto
 Contains **ApiVersionService** service with **GetApiVersion** to be able to read current Public API version available for communication with miner
+
+#### 16. proto/bos/v1/advanced_settings.proto
+Contains settings related messages and **AdvancedSettingsService** for managing experimental features and advanced configuration options:
+* **GetSettings** - method to retrieve settings with their current values. By default only user-configured settings are returned; use `include_default` to include settings with default values,
+* **SetSettings** - method to atomically update one or more settings in a single call; passing a null value clears a setting and restores its default. If any setting fails validation, the whole request is rejected via a standard gRPC error and no settings are changed. On success, the response echoes back the applied settings (null for settings that were cleared),
+* **GetSettingsSchema** - method to retrieve a JSON Schema defining all available settings with their types, constraints, metadata, and default values,
+* **ResetAllSettings** - method to reset all settings to their default values and return the effective values of all supported settings after the reset.
 
 
 
