@@ -253,6 +253,7 @@ Contains network related messages and **NetworkService** with various methods to
 Contains tuner related messages and **PerformanceService** with various methods to read or modify tuner:
 * **GetTunerState** - method to read current tuner state and available tuner profiles,
 * **ListTargetProfiles** - method to set default power target,
+* **GetMinerEfficiencyProfile** - method to get the miner efficiency curve as an array of points ordered by power target,
 * **SetDefaultPowerTarget** - method to set default power target,
 * **SetPowerTarget** - method to set specific power target,
 * **IncrementPowerTarget** - method to increment currently configured power target by a specific value,
