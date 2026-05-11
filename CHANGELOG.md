@@ -6,6 +6,11 @@
 * Introduced new method `GetMinerEfficiencyProfile` in the `braiins.bos.v1.PerformanceService`. User can now retrieve the miner efficiency curve as an array of efficiency points ordered by power target.
 * Introduced new messages `braiins.bos.v1.MinerEfficiencyPoint`, `braiins.bos.v1.GetMinerEfficiencyProfileRequest` and `braiins.bos.v1.GetMinerEfficiencyProfileResponse`.
 * Introduced new fields `lowest_water_inlet_temp` and `highest_water_outlet_temp` in the `braiins.bos.v1.Hashboard` message to get lowest water inlet and highest outlet temperatures per hashboard for hydro miners.
+* Introduced new `braiins.bos.v1.AdvancedSettingsService`. This service is used for enabling experimental features on bosminer and advanced system settings. Methods added:
+  - `GetSettings` - returns settings with their current values. By default only user-configured settings are returned; use `include_default` to include settings with default values.
+  - `SetSettings` - atomically updates one or more settings in a single call; passing a null value for a setting clears it and restores its default. If any setting fails validation, the whole request is rejected via a standard gRPC error and no settings are changed. On success, the response echoes back the applied settings (null for settings that were cleared).
+  - `GetSettingsSchema` - returns a JSON Schema defining all available settings with their types, constraints, metadata and default values.
+  - `ResetAllSettings` - resets all settings to their default values and returns the effective values of all supported settings after the reset.
 
 ### Changed
 * Extended `braiins.bos.v1.TunerState` enumeration with `TUNER_STATE_PREHEAT` variant.
