@@ -255,6 +255,10 @@ message Hashboard {
   optional string board_name = 13;
   // Hashboard chip type
   optional string chip_type = 14;
+  // Lowest water inlet temperature (hydro cooling only)
+  optional braiins.bos.v1.Temperature lowest_water_inlet_temp = 15;
+  // Highest water outlet temperature (hydro cooling only)
+  optional braiins.bos.v1.Temperature highest_water_outlet_temp = 16;
 }
 
 // Enumeration for support archive format
