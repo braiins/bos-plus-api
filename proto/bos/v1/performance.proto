@@ -157,6 +157,37 @@ message HashrateTargetProfile {
   braiins.bos.v1.Power estimated_power_consumption = 4;
 }
 
+// Single point on the miner efficiency curve
+message MinerEfficiencyPoint {
+  // Number of tuned profiles used to interpolate the curve from
+  uint32 quality = 1;
+  // Power target
+  braiins.bos.v1.Power power_target = 2;
+  // Estimated power consumption
+  braiins.bos.v1.Power consumption = 3;
+  // Estimated fan speed expressed as a value between 0 and 100 (PWM)
+  uint32 fan_speed = 4;
+  // Estimated outlet temperature
+  braiins.bos.v1.Temperature outlet_temp = 5;
+  // Estimated ambient temperature
+  braiins.bos.v1.Temperature ambient_temp = 6;
+  // Estimated hashrate
+  braiins.bos.v1.TeraHashrate hashrate = 7;
+  // Estimated frequency
+  braiins.bos.v1.Frequency frequency = 8;
+  // Estimated voltage
+  braiins.bos.v1.Voltage voltage = 9;
+}
+
+message GetMinerEfficiencyProfileRequest {}
+
+// Miner efficiency profile curve
+message GetMinerEfficiencyProfileResponse {
+  // Efficiency curve points ordered by ascending power target. The number of points varies by miner model (typically 6
+  // to 20 points).
+  repeated braiins.bos.v1.MinerEfficiencyPoint points = 1;
+}
+
 enum TunerState {
   TUNER_STATE_UNSPECIFIED = 0;
   TUNER_STATE_DISABLED = 1;
@@ -447,6 +478,8 @@ service PerformanceService {
   rpc GetTunerState(GetTunerStateRequest) returns (GetTunerStateResponse);
   // Method to get the current tuner details
   rpc ListTargetProfiles(ListTargetProfilesRequest) returns (ListTargetProfilesResponse);
+  // Method to get the miner efficiency profile
+  rpc GetMinerEfficiencyProfile(GetMinerEfficiencyProfileRequest) returns (GetMinerEfficiencyProfileResponse);
   // Method to set default power target for tuner
   rpc SetDefaultPowerTarget(SetDefaultPowerTargetRequest) returns (SetPowerTargetResponse);
   // Method to set absolute power target for tuner
