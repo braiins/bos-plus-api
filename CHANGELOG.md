@@ -5,6 +5,7 @@
 ### Added
 * Introduced new method `GetMinerEfficiencyProfile` in the `braiins.bos.v1.PerformanceService`. User can now retrieve the miner efficiency curve as an array of efficiency points ordered by power target.
 * Introduced new messages `braiins.bos.v1.MinerEfficiencyPoint`, `braiins.bos.v1.GetMinerEfficiencyProfileRequest` and `braiins.bos.v1.GetMinerEfficiencyProfileResponse`.
+* Introduced new fields `lowest_water_inlet_temp` and `highest_water_outlet_temp` in the `braiins.bos.v1.Hashboard` message to get lowest water inlet and highest outlet temperatures per hashboard for hydro miners.
 
 ### Changed
 * Extended `braiins.bos.v1.TunerState` enumeration with `TUNER_STATE_PREHEAT` variant.
