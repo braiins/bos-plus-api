@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.11.0] - yyyy-mm-dd
+## [1.11.0] - 2026-05-11
 
 ### Added
 * Introduced new method `GetMinerEfficiencyProfile` in the `braiins.bos.v1.PerformanceService`. User can now retrieve the miner efficiency curve as an array of efficiency points ordered by power target.
