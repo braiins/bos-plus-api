@@ -198,6 +198,8 @@ message GetMinerDetailsResponse {
   ControlBoardSocFamily control_board_soc_family = 15;
   // Miner serial number
   optional string serial_number = 16;
+  // Whether the miner has a PIC (Programmable Interrupt Controller) board
+  optional bool is_pic_model = 17;
 }
 
 message MinerPowerStats {
