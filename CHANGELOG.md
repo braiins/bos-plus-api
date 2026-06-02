@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.12.0] - yyyy-mm-dd
+## [1.12.0] - 2026-06-02
 
 ### Added
 * Introduced new field `is_pic_model` in the `braiins.bos.v1.GetMinerDetailsResponse` message to indicate whether the miner has a PIC (Programmable Interrupt Controller) board.
