@@ -2,6 +2,9 @@
 
 ## [1.13.0] - yyyy-mm-dd
 
+### Added
+* Introduced new optional field `wipe_network` in the `braiins.bos.v1.FactoryResetRequest` message. When set to `true`, the factory reset additionally clears the network configuration so the miner returns to DHCP with the stock hostname on the next boot. When omitted (or `false`), the network configuration is preserved, keeping the previous behaviour.
+
 ## [1.12.0] - 2026-06-02
 
 ### Added
