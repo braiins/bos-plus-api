@@ -60,7 +60,13 @@ message StopResponse {
 }
 
 // Request for factory reset action
-message FactoryResetRequest {}
+message FactoryResetRequest {
+  // When set to true, the factory reset also wipes the network
+  // configuration so the miner returns to DHCP with the stock hostname on
+  // the next boot. Optional: when omitted (or false) the network
+  // configuration is preserved, which is the historical behaviour.
+  optional bool wipe_network = 1;
+}
 
 // Response for factory reset action
 message FactoryResetResponse {}
