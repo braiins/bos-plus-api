@@ -7,6 +7,7 @@ This repository contains protocol buffers for the new Braiins OS Public API, whi
 
 | Public API Version | Braiins OS version |
 |--------------------|--------------------|
+| 1.13.0             | 26.07              |
 | 1.12.0             | 26.06              |
 | 1.11.0             | 26.05              |
 | 1.10.0             | 26.04              |
