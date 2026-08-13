@@ -78,14 +78,27 @@ message GetLicenseStateResponse {
 message ApplyContractKeyRequest {
   // Licence contract key string
   string contract_key = 1;
+  // Flag if an already installed license should be kept. When set to true, an already installed
+  // license is kept untouched and the new contract key is not applied. When set to false or
+  // omitted, the license is overwritten by the new contract key. The flag is ignored when no
+  // contract key was applied before; the new contract key is always applied in that case.
+  optional bool keep_existing = 2;
 }
 
 message ApplyContractKeyResponse {
-  // Flag if custom license was successfully installed
+  // Flag if custom license was successfully installed. It is `true` when the new license was
+  // downloaded and installed, both when no contract key was applied before and when a previously
+  // installed license was overwritten. It is `false` when `keep_existing` was set and an already
+  // installed license was kept untouched regardless of its current state, so the new key was not
+  // applied. Any failure to download or install the new license is reported as an error instead;
+  // when an existing license was being overwritten, it may already have been removed at that point
+  // and is not restored.
   bool successful = 1;
 }
 
 service LicenseService {
   rpc GetLicenseState(GetLicenseStateRequest) returns (GetLicenseStateResponse);
+  // Apply contract key. Bosminer is not restarted automatically; when `successful` is `true`,
+  // restart bosminer for the new license to take effect.
   rpc ApplyContractKey(ApplyContractKeyRequest) returns (ApplyContractKeyResponse);
 }
