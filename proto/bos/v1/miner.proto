@@ -355,7 +355,8 @@ message GetMinerDetailsResponse {
   // System uptime
   uint64 system_uptime_s = 11;
   // Miner status
-  MinerStatus status = 12;
+  // Deprecated: Use detailed_status instead.
+  MinerStatus status = 12 [deprecated = true];
   // Kernel version
   string kernel_version = 13;
   // PSU details
@@ -519,7 +520,10 @@ message HashboardEnableState {
 
 service MinerService {
   // Method to fetch miner status
-  rpc GetMinerStatus(GetMinerStatusRequest) returns (stream GetMinerStatusResponse);
+  // Deprecated: Use GetMinerDetailedStatus instead.
+  rpc GetMinerStatus(GetMinerStatusRequest) returns (stream GetMinerStatusResponse) {
+    option deprecated = true;
+  }
   // Method to fetch detailed miner status.
   // Sends a message on every status change.
   rpc GetMinerDetailedStatus(GetMinerDetailedStatusRequest) returns (stream GetMinerDetailedStatusResponse);

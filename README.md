@@ -237,7 +237,7 @@ Contains license related messages and **LicenseService** with method to read lic
 
 #### 8. proto/bos/v1/miner.proto
 Contains miner related messages and **MinerService** with various methods to read info about miner:
-* **GetMinerStatus** - method to fetch miner status,
+* **GetMinerStatus** - method to fetch miner status (deprecated, use **GetMinerDetailedStatus**),
 * **GetMinerDetailedStatus** - method to fetch detailed miner status,
 * **GetMinerDetails** - method to read miner details info like model, IP, uptime, etc.,
 * **GetMinerStats** - method to read aggregated miner stats,
