@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.14.0] - yyyy-mm-dd
+## [1.14.0] - 2026-08-13
 
 ### Added
 * Introduced new `braiins.bos.v1.MinerService.GetMinerDetailedStatus` server-streaming method that returns detailed miner status (e.g. stopped due to dangerous temperature, starting while defrosting, running while preheating).
