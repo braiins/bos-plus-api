@@ -29,6 +29,7 @@ import "bos/v1/cooling.proto";
 import "bos/v1/pool.proto";
 import "bos/v1/units.proto";
 import "bos/v1/work.proto";
+import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 option go_package = "github.com/braiins/bos-plus-api/braiins/bos/v1;bos_proto_v1";
@@ -147,6 +148,171 @@ message GetMinerStatusResponse {
   MinerStatus status = 1;
 }
 
+message GetMinerDetailedStatusRequest {}
+
+// Detailed miner status: the lifecycle phase the miner is in, the reason or
+// sub-state behind it, and when it entered and is expected to leave that phase
+message MinerDetailedStatus {
+  oneof status {
+    // Miner is stopped and not mining
+    StopReason stopped = 1;
+    // Miner is starting up and not yet mining
+    StartReason starting = 2;
+    // Miner is running and mining
+    RunReason running = 3;
+    // Miner is shutting down
+    StopReason stopping = 4;
+  }
+  // When the miner entered the current status
+  google.protobuf.Timestamp status_since = 5;
+  // When the miner is expected to leave the current status (transition to another one), left unset
+  // when that time is unknown
+  ExpectedTime status_until = 6;
+}
+
+message GetMinerDetailedStatusResponse {
+  // Detailed miner status
+  MinerDetailedStatus status = 1;
+}
+
+// A point in time known with a given precision: either an exact timestamp or
+// an upper bound (the event happens no later than the timestamp)
+message ExpectedTime {
+  oneof precision {
+    // Upper bound: not known exactly, but no later than this timestamp
+    google.protobuf.Timestamp max = 1;
+    // Exact: known precisely, equal to this timestamp
+    google.protobuf.Timestamp exact = 2;
+  }
+}
+
+// Bosminer application is unavailable
+message ApplicationUnavailable {}
+
+// Hardware detection failed
+message UnsupportedHardware {
+  // Detected hardware error messages
+  repeated string errors = 1;
+}
+
+// All mining pools are unresponsive (or there is no pool configuration)
+message DeadPools {}
+
+// No valid BOS license
+message MissingLicense {}
+
+// User-initiated pause
+message UserPause {}
+
+// Reason why the miner is thermally paused
+enum ThermalPauseReason {
+  THERMAL_PAUSE_REASON_UNSPECIFIED = 0;
+  // Temperature reached a dangerous level
+  THERMAL_PAUSE_REASON_DANGEROUS_TEMPERATURE = 1;
+  // Fans are broken
+  THERMAL_PAUSE_REASON_BROKEN_FANS = 2;
+}
+
+// Paused due to thermal conditions
+message ThermalPause {
+  // Thermal reason that triggered the pause
+  ThermalPauseReason reason = 1;
+}
+
+// Dynamic Performance Scaling cooldown in progress
+message DpsCooldown {}
+
+// Autotuner encountered an error
+message TunerError {
+  // Autotuner error message
+  string message = 1;
+}
+
+// Hardware error during operation
+message HardwareError {
+  // Hardware error message
+  string message = 1;
+}
+
+// Detailed state of a stopped or stopping miner.
+//
+// The same message is reused for both the `stopped` and `stopping` arms of
+// `MinerDetailedStatus.status` (a miner stops, and is shutting down,
+// for the same underlying reasons). The message type alone does not tell the
+// two phases apart: clients must look at which `status` arm is set to know
+// whether the miner is already stopped or still stopping.
+message StopReason {
+  oneof reason {
+    // Stopped with no additional context
+    Unspecified unspecified = 1;
+    // Application unavailable
+    ApplicationUnavailable application_unavailable = 2;
+    // Hardware detection failed
+    UnsupportedHardware unsupported_hardware = 3;
+    // All mining pools are unresponsive (or there is no pool configuration)
+    DeadPools dead_pools = 4;
+    // No valid BOS license
+    MissingLicense missing_license = 5;
+    // User-initiated pause
+    UserPause user_pause = 6;
+    // Paused due to thermal conditions
+    ThermalPause thermal_pause = 7;
+    // Dynamic Performance Scaling cooldown in progress
+    DpsCooldown dps_cooldown = 8;
+    // Autotuner encountered an error
+    TunerError tuner_error = 9;
+    // Hardware error during operation
+    HardwareError hardware_error = 10;
+  }
+}
+
+// Empty state used when a state has no additional context
+message Unspecified {}
+
+// Waiting for a startup delay
+message DelayedStart {}
+
+// Cooling down before start
+message CoolingDown {}
+
+// Ambient temperature too low, waiting before start
+message WaitingWhileCold {}
+
+// Hashboard defrosting in progress
+message Defrosting {}
+
+// State of a starting miner
+message StartReason {
+  oneof reason {
+    // Starting with no additional context
+    Unspecified none = 1;
+    // Waiting for a startup delay
+    DelayedStart delayed_start = 2;
+    // Cooling down before start
+    CoolingDown cooling_down = 3;
+    // Ambient temperature too low, waiting before start
+    WaitingWhileCold waiting_while_cold = 4;
+    // Hashboard defrosting in progress
+    Defrosting defrosting = 5;
+  }
+}
+
+// Mining normally at full performance
+message Normal {}
+
+// Mining at reduced performance while hashboards preheat to a stable temperature
+message Preheating {}
+
+// State of a running miner
+message RunReason {
+  oneof reason {
+    // Running normally
+    Normal normal = 1;
+    // Mining at reduced performance while hashboards preheat to a stable temperature
+    Preheating preheating = 2;
+  }
+}
+
 message GetMinerDetailsRequest {}
 
 message PsuInfo {
@@ -200,6 +366,8 @@ message GetMinerDetailsResponse {
   optional string serial_number = 16;
   // Whether the miner has a PIC (Programmable Interrupt Controller) board
   optional bool is_pic_model = 17;
+  // Detailed miner status
+  MinerDetailedStatus detailed_status = 18;
 }
 
 message MinerPowerStats {
@@ -352,6 +520,9 @@ message HashboardEnableState {
 service MinerService {
   // Method to fetch miner status
   rpc GetMinerStatus(GetMinerStatusRequest) returns (stream GetMinerStatusResponse);
+  // Method to fetch detailed miner status.
+  // Sends a message on every status change.
+  rpc GetMinerDetailedStatus(GetMinerDetailedStatusRequest) returns (stream GetMinerDetailedStatusResponse);
   // Method to get miner details.
   rpc GetMinerDetails(GetMinerDetailsRequest) returns (GetMinerDetailsResponse);
   // Method to get aggregated miner stats.

@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.14.0] - yyyy-mm-dd
+
+### Added
+* Introduced new `braiins.bos.v1.MinerService.GetMinerDetailedStatus` server-streaming method that returns detailed miner status (e.g. stopped due to dangerous temperature, starting while defrosting, running while preheating).
+* Introduced new `braiins.bos.v1.GetMinerDetailedStatusRequest` message.
+* Introduced new `braiins.bos.v1.GetMinerDetailedStatusResponse` message that wraps a `braiins.bos.v1.MinerDetailedStatus`.
+* Introduced new `braiins.bos.v1.MinerDetailedStatus` message that carries a `status` oneof whose set arm identifies both the state and the reason or sub-state behind it: `stopped` and `stopping` via `braiins.bos.v1.StopReason`, `starting` via `braiins.bos.v1.StartReason` and `running` via `braiins.bos.v1.RunReason`.
+* Added `detailed_status` field of type `braiins.bos.v1.MinerDetailedStatus` to `braiins.bos.v1.GetMinerDetailsResponse`.
+* Introduced new supporting messages `braiins.bos.v1.ExpectedTime`, `braiins.bos.v1.Unspecified`, `braiins.bos.v1.ApplicationUnavailable`, `braiins.bos.v1.UnsupportedHardware`, `braiins.bos.v1.DeadPools`, `braiins.bos.v1.MissingLicense`, `braiins.bos.v1.UserPause`, `braiins.bos.v1.ThermalPause`, `braiins.bos.v1.DpsCooldown`, `braiins.bos.v1.TunerError`, `braiins.bos.v1.HardwareError`, `braiins.bos.v1.DelayedStart`, `braiins.bos.v1.CoolingDown`, `braiins.bos.v1.WaitingWhileCold`, `braiins.bos.v1.Defrosting`, `braiins.bos.v1.Normal` and `braiins.bos.v1.Preheating`, and new enumeration `braiins.bos.v1.ThermalPauseReason`.
+
 ## [1.13.0] - 2026-07-08
 
 ### Added
