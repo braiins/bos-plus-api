@@ -5,6 +5,9 @@
 ### Added
 * Introduced new optional field `tag` in the `braiins.bos.v1.PauseMiningRequest` message. It carries an opaque tag associated with the pause action.
 
+### Changed
+* Fixed comments on `braiins.bos.v1.NoneLicense`, `braiins.bos.v1.LimitedLicense`, `braiins.bos.v1.ValidLicense` and `braiins.bos.v1.ExpiredLicense` messages describing restricted mode and dev fee.
+
 ## [1.14.0] - 2026-08-13
 
 ### Added
