@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.15.0] - yyyy-mm-dd
+## [1.15.0] - 2026-09-16
 
 ### Added
 * Introduced new optional field `tag` in the `braiins.bos.v1.PauseMiningRequest` message. It carries an opaque tag associated with the pause action.
