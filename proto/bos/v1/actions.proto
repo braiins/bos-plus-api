@@ -72,7 +72,10 @@ message FactoryResetRequest {
 message FactoryResetResponse {}
 
 // Request for pause mining action.
-message PauseMiningRequest {}
+message PauseMiningRequest {
+  // Optional opaque tag associated with the pause action.
+  optional string tag = 1;
+}
 
 // Response for pause mining action.
 message PauseMiningResponse {
