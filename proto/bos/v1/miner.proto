@@ -110,9 +110,17 @@ message MinerIdentity {
 
 // Structure to handle BOS version
 message BosVersion {
+  // Full version string of the running firmware, e.g.
+  // `2025-11-21-0-eb658dcd-25.11-plus`.
   string current = 1;
+  // Identifier of the downgrade-compatibility group, formatted like `current`.
+  // A downgrade is only possible between firmwares with the same value.
   string major = 2;
+  // Whether this is a Braiins OS+ build.
   bool bos_plus = 3;
+  // Release number of the running firmware, e.g. `26.11`, or `26.10.1` for a
+  // patch release.
+  optional string release = 4;
 }
 
 enum MinerStatus {

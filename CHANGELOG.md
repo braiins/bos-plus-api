@@ -5,6 +5,7 @@
 ### Added
 * Introduced new `braiins.bos.v1.PerformanceService.SetDefaultDPS` method that resets all Dynamic Performance Scaling settings (enabled flag, power/hashrate step, minimal power/hashrate target, shutdown settings, mode and initial target) to their default values. Returns `braiins.bos.v1.SetDPSResponse` with the effective default values.
 * Introduced new `braiins.bos.v1.SetDefaultDPSRequest` message.
+* Added optional `release` field to `braiins.bos.v1.BosVersion` that carries the human-readable firmware release number, e.g. `26.11`, or `26.10.1` for a patch release. Unset on builds whose version string carries no release number.
 
 ## [1.15.0] - 2026-09-16
 
