@@ -386,6 +386,12 @@ message SetDPSResponse {
   optional uint32 on_start_target_percent = 7;
 }
 
+// Request for set default Dynamic Performance Scaling action.
+message SetDefaultDPSRequest {
+  // Save action
+  braiins.bos.v1.SaveAction save_action = 1;
+}
+
 message HashboardPerformanceSettings {
   // Hashboard id
   string id = 1;
@@ -503,6 +509,8 @@ service PerformanceService {
   rpc SetRelativeHashrateTarget(SetRelativeTargetRequest) returns (SetHashrateTargetResponse);
   // Method to set Dynamic Performance Scaling
   rpc SetDPS(SetDPSRequest) returns (SetDPSResponse);
+  // Method to set all Dynamic Performance Scaling settings to their default values
+  rpc SetDefaultDPS(SetDefaultDPSRequest) returns (SetDPSResponse);
   // Method to set performance mode
   rpc SetPerformanceMode(SetPerformanceModeRequest) returns (PerformanceMode);
   // Method to read active(runtime) performance mode
