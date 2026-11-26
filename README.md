@@ -271,6 +271,8 @@ Contains tuner related messages and **PerformanceService** with various methods 
 * **DecrementHashrateTarget** - method to decrement current configured hashrate target by a specific value,
 * **SetDPS** - method to set Dynamic Performance Scaling,
 * **SetDefaultDPS** - method to set all Dynamic Performance Scaling settings to their default values,
+* **SetTunerType** - method to switch tuner type (normal or continuous),
+* **SetDefaultTunerType** - method to set the tuner type to its default value,
 * **SetPerformanceMode** - method to set performance mode,
 * **GetActivePerformanceMode** - method to read active(runtime) performance mode.
 

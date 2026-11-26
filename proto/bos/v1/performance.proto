@@ -37,6 +37,15 @@ enum TunerMode {
   TUNER_MODE_HASHRATE_TARGET = 2;
 }
 
+enum TunerType {
+  TUNER_TYPE_UNSPECIFIED = 0;
+  // Tuner stops after the initial tuning is complete and only re-tunes on demand.
+  // Dynamic Performance Scaling may adjust the target meanwhile
+  TUNER_TYPE_NORMAL = 1;
+  // Tuner keeps tuning the miner after the initial tuning is complete
+  TUNER_TYPE_CONTINUOUS = 2;
+}
+
 message TunerConfiguration {
   // Flag if tuner is enabled
   optional bool enabled = 1;
@@ -46,6 +55,8 @@ message TunerConfiguration {
   braiins.bos.v1.Power power_target = 3;
   // Tuner hashrate target
   braiins.bos.v1.TeraHashrate hashrate_target = 4;
+  // Tuner type
+  optional TunerType tuner_type = 5;
 }
 
 message TunerConstraints {
@@ -57,6 +68,10 @@ message TunerConstraints {
   braiins.bos.v1.BooleanConstraint enabled = 3;
   // Default tuner mode
   TunerMode default_mode = 4;
+  // Default tuner type
+  TunerType default_type = 5;
+  // Tuner types supported by the miner
+  repeated TunerType tuner_types = 6;
 }
 
 message DPSConfiguration {
@@ -459,6 +474,24 @@ message RemoveTunedProfilesRequest {}
 
 message RemoveTunedProfilesResponse {}
 
+message SetTunerTypeRequest {
+  // Save action
+  braiins.bos.v1.SaveAction save_action = 1;
+  // Tuner type to switch to. The Dynamic Performance Scaling settings are kept as saved, use SetDPS to change them
+  TunerType tuner_type = 2;
+}
+
+message SetTunerTypeResponse {
+  // Tuner type in use
+  TunerType tuner_type = 1;
+}
+
+// Request for set default tuner type action.
+message SetDefaultTunerTypeRequest {
+  // Save action
+  braiins.bos.v1.SaveAction save_action = 1;
+}
+
 message SetQuickRampingRequest {
   // Save action
   braiins.bos.v1.SaveAction save_action = 1;
@@ -511,6 +544,10 @@ service PerformanceService {
   rpc SetDPS(SetDPSRequest) returns (SetDPSResponse);
   // Method to set all Dynamic Performance Scaling settings to their default values
   rpc SetDefaultDPS(SetDefaultDPSRequest) returns (SetDPSResponse);
+  // Method to switch tuner type (normal or continuous)
+  rpc SetTunerType(SetTunerTypeRequest) returns (SetTunerTypeResponse);
+  // Method to set default tuner type
+  rpc SetDefaultTunerType(SetDefaultTunerTypeRequest) returns (SetTunerTypeResponse);
   // Method to set performance mode
   rpc SetPerformanceMode(SetPerformanceModeRequest) returns (PerformanceMode);
   // Method to read active(runtime) performance mode
