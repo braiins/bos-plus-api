@@ -2,6 +2,10 @@
 
 ## [1.16.0] - yyyy-mm-dd
 
+### Added
+* Introduced new `braiins.bos.v1.PerformanceService.SetDefaultDPS` method that resets all Dynamic Performance Scaling settings (enabled flag, power/hashrate step, minimal power/hashrate target, shutdown settings, mode and initial target) to their default values. Returns `braiins.bos.v1.SetDPSResponse` with the effective default values.
+* Introduced new `braiins.bos.v1.SetDefaultDPSRequest` message.
+
 ## [1.15.0] - 2026-09-16
 
 ### Added
