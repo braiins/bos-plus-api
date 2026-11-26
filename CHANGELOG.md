@@ -6,6 +6,12 @@
 * Introduced new `braiins.bos.v1.PerformanceService.SetDefaultDPS` method that resets all Dynamic Performance Scaling settings (enabled flag, power/hashrate step, minimal power/hashrate target, shutdown settings, mode and initial target) to their default values. Returns `braiins.bos.v1.SetDPSResponse` with the effective default values.
 * Introduced new `braiins.bos.v1.SetDefaultDPSRequest` message.
 * Added optional `release` field to `braiins.bos.v1.BosVersion` that carries the human-readable firmware release number, e.g. `26.11`, or `26.10.1` for a patch release. Unset on builds whose version string carries no release number.
+* Introduced new enumeration `braiins.bos.v1.TunerType` with `TUNER_TYPE_NORMAL` and `TUNER_TYPE_CONTINUOUS` variants. `TUNER_TYPE_NORMAL` is the current tuner behaviour (tunes to the target once, then stays stable) with Dynamic Performance Scaling as an optional addition, `TUNER_TYPE_CONTINUOUS` keeps tuning the miner after the initial tuning is complete.
+* Added optional `tuner_type` field of type `braiins.bos.v1.TunerType` to `braiins.bos.v1.TunerConfiguration`.
+* Added `default_type` field of type `braiins.bos.v1.TunerType` and repeated `tuner_types` field listing the tuner types supported by the miner to `braiins.bos.v1.TunerConstraints`.
+* Introduced new `braiins.bos.v1.SetTunerTypeRequest` and `braiins.bos.v1.SetTunerTypeResponse` messages.
+* Introduced new `braiins.bos.v1.PerformanceService.SetDefaultTunerType` method that resets the tuner type to its default value. Returns `braiins.bos.v1.SetTunerTypeResponse` with the effective default value.
+* Introduced new `braiins.bos.v1.SetDefaultTunerTypeRequest` message.
 
 ## [1.15.0] - 2026-09-16
 
